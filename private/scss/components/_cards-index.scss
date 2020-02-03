@@ -1,0 +1,492 @@
+.indexCard {
+	display: flex;
+	border: none;
+	border: 1px solid $gray-200;
+	border-radius: 0.1875rem;
+	margin-bottom: 1rem;
+	@include transition($btn-transition);
+	a {
+		color: $dark;
+		&:hover {
+			color: $primary;
+		}
+	}
+	@include media-breakpoint-down(md) {
+	}
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	.card-body {
+		display: flex;
+		flex-wrap: nowrap;
+		justify-content: space-between;
+		padding: 1.5rem;
+		@include media-breakpoint-down(md) {
+			flex-wrap: wrap;
+		}
+	}
+
+	.cardContent {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		@include media-breakpoint-down(md) {
+			// width: 100%;
+			flex-basis: 100%;
+		}
+	}
+
+	.cardHeader {
+		margin-bottom: 1.125rem;
+	}
+
+	.card-title {
+		padding-right: ($spacer * 2);
+		@include media-breakpoint-down(md) {
+			padding-right: 0;
+		}
+	}
+
+	h2 {
+		font-weight: 600;
+		font-size: $h5-font-size;
+		font-feature-settings: 'case' 1;
+		letter-spacing: -0.017em;
+	}
+
+	.card-subtitle {
+		display: flex;
+		flex-wrap: wrap;
+		font-size: $small-font-size;
+		padding-right: 2.5rem;
+		@include media-breakpoint-down(md) {
+			padding-right: 0;
+		}
+	}
+
+	.cardMeta {
+		display: inline;
+	}
+
+	.cardMakers {
+		display: inline;
+	}
+
+	.metaItem {
+		display: inline;
+		white-space: nowrap;
+	}
+
+	.metaItemMaker {
+		display: inline;
+		white-space: nowrap;
+		font-feature-settings: 'case' 1;
+		&::after {
+			margin-left: -.2rem;
+			content: ", ";
+			color: #9ca2a9;
+		}
+		&:last-child {
+			padding-right: 0;
+			&::after {
+				content: none;
+			}
+		}
+	}
+
+	.metaDivider {
+		display: inline;
+		vertical-align: 0.125em;
+		font-size: $small-font-size;
+		padding: 0 0.2rem;
+	}
+
+	.cardTags {
+		display: inline-flex;
+		flex-wrap: wrap;
+		padding-right: ($spacer * 2);
+		@include media-breakpoint-down(md) {
+			padding-right: 0;
+		}
+	}
+
+	.metaTags {
+		margin-top: 1.125rem;
+	}
+
+	.tagItem {
+		display: flex;
+		align-items: baseline;
+		margin-top: 0.75rem;
+		margin-right: 0.75rem;
+		padding: 0;
+		border-radius: 0;
+		font-feature-settings: 'case' 1;
+		font-size: 80%;
+		font-weight: normal;
+		transition: none;
+		line-height: normal;
+	}
+
+	.createdAtItem, .deadItem {
+		i {
+			padding-right: 0.3rem;
+			font-size: 87.5%;
+			line-height: 1.25;
+			align-self: center;
+		}
+		span {
+			line-height: normal;
+		}
+	}
+
+	.cardActions {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		min-width: 20%;
+		flex-basis: 20%;
+		margin: ($spacer * -1.5) ($spacer * -1.5);
+		@include media-breakpoint-down(md) {
+			flex-basis: 100%;
+			flex-direction: row;
+			justify-content: space-between;
+			margin: 0;
+			margin-top: 0.75rem;
+		}
+	}
+
+	.actionItem {
+		display: flex;
+		justify-content: flex-end;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		&:first-child {
+			border-top-right-radius: $card-border-radius;
+		}
+		&:last-child {
+			border-bottom-right-radius: $card-border-radius;
+		}
+		@include media-breakpoint-down(md) {
+			justify-content: space-between;
+			flex-wrap: nowrap;
+		}
+	}
+
+	.actionButton {
+		padding: 1.5rem;
+		border: none;
+		border-radius: 0;
+		transition: none;
+	}
+
+	.upvoteButton {
+		display: inline-block;
+		white-space: nowrap;
+		text-align: right;
+		border-top-right-radius: $card-border-radius;
+		font-size: $h5-font-size;
+		line-height: 1.2;
+		letter-spacing: -0.017em;
+		i {
+			vertical-align: 0.0325rem;
+			font-size: 87.5%;
+		}
+		span {
+			vertical-align: baseline;
+			font-weight: 600;
+			font-variant-numeric: tabular-nums;
+		}
+		.likeLabel {
+			display: none;
+		}
+		@include media-breakpoint-up(lg){
+			&:not(:focus):hover {
+				.likeLabel {
+					display: inline-block;
+				}
+				.likeCount {
+					display: none;
+				}
+			}
+		}
+		@include media-breakpoint-down(md){
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin-left: -1.5rem;
+			margin-bottom: -1.5rem;
+			font-size: $font-size-base;
+			i {
+				font-size: 80%;
+			}
+			span {
+				line-height: 1;
+				font-size: $font-size-sm;
+				padding-left: 0.25rem;
+			}
+		}
+	}
+
+	.unlikeButton {
+		@include media-breakpoint-up(lg){
+			&:not(:focus):hover {
+				i::before {
+					content: "\f354";
+				}
+			}
+		}
+	}
+
+	.loginButton {
+		@include media-breakpoint-up(lg){
+			&:hover {
+				.likeCount {
+					display: none;
+				}
+				.likeLabel {
+					display: inline-block;
+				}
+			}
+		}
+	}
+
+	.externalLink {
+		display: flex;
+		justify-content: flex-end;
+		align-items: baseline;
+		border-bottom-right-radius: $card-border-radius;
+		font-size: 80%;
+		span {
+			padding-right: 0.375rem;
+			font-weight: 500;
+			line-height: normal;
+		}
+		i {
+			line-height: normal;
+		}
+		@include media-breakpoint-down(md){
+			margin-left: auto;
+			margin-right: -1.5rem;
+			margin-bottom: -1.5rem;
+		}
+	}
+
+	// Tags index card style
+	.tagCard {
+		padding: 0.75rem 1rem;
+		.tagInfo {
+			display: flex;
+			// flex-basis: 100%;
+			align-items: center;
+			justify-content: space-between;
+			h2 {
+				margin-bottom: 0;
+				font-size: $font-size-lg;
+			}
+		}
+		.tagMeta {
+			margin-left: 0.5rem;
+			font-size: $font-size-sm;
+			font-weight: 500;
+		}
+	}
+
+	.makerCardActions {
+		display: flex;
+		flex-direction: column;
+		min-width: 25%;
+		flex-basis: 25%;
+		.actionItem {
+			justify-content: flex-start;
+			margin-bottom: 0.375rem;
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+		.actionButton.externalLink {
+			justify-content: flex-start;
+			flex-basis: 100%;
+			align-items: baseline;
+			margin-right: 0;
+			margin-bottom: 0;
+			padding: 0;
+			i {
+				padding-right: ($spacer * 0.375);
+			}
+			span {
+				line-height: 1.5;
+				padding: 0;
+				font-weight: normal;
+				font-feature-settings: 'case' 1;
+				white-space: pre-wrap;
+			}
+			@include media-breakpoint-down(md) {
+				flex-basis: auto;
+				justify-content: flex-start;
+				align-items: center;
+				margin-left: 0;
+				i {
+					line-height: 1;
+				}
+				span {
+					line-height: 1;
+				}
+			}
+		}
+		@include media-breakpoint-down(md) {
+			.actionItem {
+				margin-top: 0.75rem;
+				margin-bottom: 0;
+			}
+			flex-basis: 100%;
+			justify-content: flex-start;
+
+		}
+	}
+
+	.sourceCard {
+		flex-direction: column;
+		align-content: stretch;
+	}
+
+	.sourceCardActions {
+		display: flex;
+		justify-content: space-between;
+		flex-basis: 100%;
+		align-items: flex-end;
+		.sourceTags {
+			margin-bottom: 0;
+		}
+		.actionItem {
+			justify-content: flex-end;
+		}
+		.actionButton.externalLink {
+			line-height: 1;
+			margin: -1.5rem;
+		}
+		@include media-breakpoint-down(md) {
+		}
+	}
+}
+
+// Tags index style NEW TEST
+.tagsContainer {
+	display: flex;
+	flex-wrap: wrap;
+	.indexCard {
+		margin-left: 0;
+		margin-right: 1rem;
+		&:last-child {
+			margin-bottom: 1rem;
+		}
+	}
+}
+
+// Nominees index card style
+.nomCard {
+	.nomUsername {
+		margin-left: 0.375em;
+	}
+	.disabledLike {
+		.likeCount {
+			display: inline-block !important;
+		}
+	}
+}
+.nomDescription {
+	margin-top: 0.5rem;
+	margin-bottom: 1.125rem;
+	max-width: 60ch;
+	padding-right: ($spacer * 2);
+	white-space: pre-wrap;
+	color: $dark;
+	font-family: $font-family-serif;
+	font-size: $font-size-base;
+	// font-weight: 500;
+	@include media-breakpoint-down(md) {
+		// margin-top: 0.5rem;
+		padding-right: 0;
+	}
+	span {
+		color: $text-muted;
+	}
+}
+
+// User profile index card style
+.indexCard.userIndexCard {
+	.card-subtitle {
+		display: block;
+	}
+}
+
+// Other, additional
+.pagination {
+	display: flex;
+	flex-basis: 100%;
+	justify-content: center;
+	margin-top: 1rem;
+	margin-bottom: 0;
+	font-size: $font-size-sm;
+	border-radius: 0;
+
+	.page {
+	  position: relative;
+	  display: block;
+	  padding: $pagination-padding-y $pagination-padding-x;
+	  padding-top: 0;
+	  margin-left: -$pagination-border-width;
+	  line-height: $pagination-line-height;
+
+	  &:hover {
+	    z-index: 2;
+	    text-decoration: none;
+	  }
+
+	  &:focus {
+	    z-index: 2;
+	    outline: none;
+	    box-shadow: none;
+	  }
+
+	  // Opinionated: add "hand" cursor to non-disabled .page-link elements
+	  &:not(:disabled):not(.disabled) {
+	    cursor: pointer;
+	  }
+	}
+
+	li {
+		&:first-child {
+	    	.page {
+	    	  	margin-left: 0;
+	      		@include border-left-radius(0.1875rem);
+	    	}
+	  	}
+	  	&:last-child {
+	    	.page {
+	      		@include border-right-radius(0.1875rem);
+	    	}
+	  	}
+
+	  	&.active .page {
+		    z-index: 1;
+	 	}
+
+	  	&.disabled .page {
+		    pointer-events: none;
+		    // Opinionated: remove the "hand" cursor set previously for .page-link
+		    cursor: auto;
+	  	}
+	}
+	@include media-breakpoint-down(md) {
+		margin-left: 0.25rem;
+		margin-right: 0.25rem;
+	}
+}
+
+#noResults {
+	display: none;
+	border: 1px solid $gray-200;
+}

@@ -1,0 +1,37 @@
+<!-- Search -->
+<meta name="description" content="<% if(typeof metaDesc == 'string' && metaDesc){ %><%= metaDesc %><% } %>" />
+<!-- Schema.org for Google -->
+<meta itemprop="name" content="Sir Stratalot<% if(typeof viewTitle == 'string' && viewTitle){ %> | <%= viewTitle %><% } else if(typeof viewTitle == 'object' && viewTitle) { %> | <%= viewTitle %><% } %>" />
+<meta itemprop="description" content="<% if(typeof metaDesc == 'string' && metaDesc){ %><%= metaDesc %><% } %>" />
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Sir Stratalot<% if(typeof viewTitle == 'string' && viewTitle){ %> | <%= viewTitle %><% } else if(typeof viewTitle == 'object' && viewTitle) { %> | <%= viewTitle %><% } %>" />
+<meta name="twitter:description" content="<% if(typeof metaDesc == 'string' && metaDesc){ %><%= metaDesc %><% } %>" />
+<meta name="twitter:site" content="@sirstratalot" />
+<% if(typeof link !== 'undefined' && link && link.imgurl && (link.imgurl !== '')){ %>
+  <meta name="twitter:image" content="<%= link.imgurl %>" />
+<% } else { %>
+  <meta name="twitter:image" content="https://res.cloudinary.com/theholograms/image/upload/v1562090094/sirstratalot/meta/sirstratalot-twitter-preview.png" />
+<% } %>
+<!-- Open Graph (Facebook, Pinterest, Google) -->
+<meta property="fb:app_id" content="2070064246633460" />
+<meta property="og:title" content="Sir Stratalot<% if(typeof viewTitle == 'string' && viewTitle){ %> | <%= viewTitle %><% } else if(typeof viewTitle == 'object' && viewTitle) { %> | <%= viewTitle %><% } %>" />
+<meta property="og:description" content="<% if(typeof metaDesc == 'string' && metaDesc){ %><%= metaDesc %><% } %>" />
+<% if(typeof link !== 'undefined' && link && link.imgurl && (link.imgurl !== '')){ %>
+  <meta property="og:image" content="<%= link.imgurl %>" />
+<% } else { %>
+  <meta property="og:image" content="https://res.cloudinary.com/theholograms/image/upload/v1562090094/sirstratalot/meta/sirstratalot-og-preview.png" />
+<% } %>
+<% if(typeof metaUrl !== 'undefined' && metaUrl){ %>
+  <meta property="og:url" content="<%= metaUrl %>" />
+<% } %>
+<meta property="og:site_name" content="Sir Stratalot" />
+<meta property="og:type" content="website" />
+<!-- favicons -->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#007bff">
+<meta name="msapplication-TileColor" content="#007bff">
+<meta name="theme-color" content="#ffffff">

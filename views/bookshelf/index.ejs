@@ -1,0 +1,63 @@
+<% include ../partials/header %>
+<% include ../partials/modules/login-modal %>
+<div class="row">
+  <div class="container">
+    <div class="row justify-content-lg-center">
+      <div class="col-lg-12">
+      <!-- <div class="col-lg-9"> --> <!-- switch with other depending on columns -->
+        <div class="listHeader">
+          <div class="listHeadline">
+            <h1><span>Bookshelf</span><i class="fas fa-book-open"></i></h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div id="listjsContainer">
+    <div class="row justify-content-lg-center">
+      <div class="col-lg-12">
+      <!-- <div class="col-lg-9"> --> <!-- switch with other depending on columns -->
+        <div class="bookTools">
+          <!-- <% include ../partials/modules/links-list-search %> -->
+          <% include ../partials/modules/books-list-sort %>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-lg-center">
+      <div class="col-lg-12">
+        <div class="listjs bookShelf">
+          <% links.forEach((link) => { %>
+          <div class="bookCard">
+          <!-- List.js hack: Hidden ul + linkSchema virtuals -->
+            <ul class="hide">
+              <li class="linkTitle"><%= link.sorttitle %></li>
+              <li class="linkMakers"><%= link.allmakers %></li>
+              <li class="linkTags"><%= link.alltags %></li>
+              <li class="linkCreated"><%= moment().diff(link.createdAt) %></li>
+              <li class="linkLikes"><%= link.likes %></li>
+              <li class="linkSources"><%= link.sources.length %></li>
+            </ul>
+            <div class="bookItem">
+              <a href="/links/<%= link.slug %>"><img order="0" src="//ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=US&ASIN=<% if(link.asin !== ''){ %><%= link.asin %><% } else { %><%= link.isbn %><% } %>&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_LL250_&tag=sirstratalot-20" ></a><img src="//ir-na.amazon-adsystem.com/e/ir?t=sirstratalot-20&l=am2&o=1&a=<% if(link.asin !== ''){ %><%= link.asin %><% } else { %><%= link.isbn %><% } %>" width="1" height="1" border="0" alt="<%= link.title %>" style="border:none !important; margin:0px !important;" />
+            </div>
+            <div class="bookMeta">
+              <div class="bookStats">
+                <div class="bookMetaItem"><i class="fas fa-arrow-alt-up"></i><%= link.likes %></div>
+                <div class="bookMetaItem"><i class="fas fa-star-of-life"></i><%= link.sources.length %></div>
+              </div>
+              <div class="bookActions">
+                <div class="externalLink">
+                  <a target="_blank" href="<%=link.url%>">amazon</a>
+                </div>
+              </div>
+            </div>
+          </div>
+           <% }); %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% include ../partials/footer %>

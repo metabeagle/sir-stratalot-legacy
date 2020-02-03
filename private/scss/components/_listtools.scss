@@ -1,0 +1,116 @@
+.listTools {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.listSearch {
+  display: flex;
+  flex-grow: 1;
+  .searchIcon {
+    line-height: inherit;
+  }
+  .input-group {
+    margin: 0;
+    flex-grow: 1;
+    display: flex;
+    .input-group-text {
+      padding-right: 0.5rem;
+      font-size: 80%;
+      border: none;
+      border-radius: 0.1875rem;
+      i {
+        vertical-align: baseline;
+      }
+    }
+    input {
+      // padding: 0.5rem 0.75rem;
+      // padding-bottom: 0.5rem;
+      align-self: flex-start;
+      -webkit-appearance: none;
+      padding-left: 0;
+      // height: 100%;
+      background: none;
+      border: none;
+      border-radius: 0.1875rem;
+      // border: 1px solid $gray-200;
+      font-size: $font-size-sm;
+      // vertical-align: text-top;
+      transition: color 0.15s ease-in-out,background-color 0.15s ease-in-out,border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out;
+    }
+  }
+  @include media-breakpoint-down(md) {
+    // margin: $spacer $spacer;
+    i {
+      // padding-left: 0.5rem;
+      // padding-bottom: 0;
+    }
+    input {
+      // padding-bottom: 0rem;
+      // padding-left: 0.375rem;
+    }
+  }
+}
+
+.listSort {
+  margin-left: 0.5rem;
+  .dropdown {
+    height: 100%;
+    .dropdown-toggle::after {
+      margin-left: 0.3125rem;
+    }
+  }
+  .btn {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    border-radius: 0.1875rem;
+    font-size: $small-font-size;
+    font-weight: 500;
+  }
+  .dropdown-menu {
+    border-radius: 0.1875rem;
+    font-size: $font-size-sm;
+    .dropdown-item {
+      width: 100%;
+      line-height: 1.5;
+    }
+  }
+}
+
+.userHeader {
+  border: none;
+  font-size: $small-font-size;
+  .nav-pills {
+    width: 100%;
+    justify-content: center;
+    .nav-link {
+      display: flex;
+      align-items: baseline;
+      margin: 0 0.25rem;
+      font-weight: 500;
+      @include transition($btn-transition);
+      @include media-breakpoint-down(md){
+        // padding: .59375rem 0.75rem;
+      }
+      border-radius: 0.1875rem;
+      // border-bottom: 1px solid $gray-200;
+      // line-height: 1;
+      // font-weight: 600;
+    }
+    .linkCount {
+      margin-left: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      // text-align: center;
+      // vertical-align: middle;
+      // line-height: 1;
+      // font-variant-numeric: tabular-nums;
+    }
+    .active {
+      // font-weight: 600;
+      // border-bottom: 1px solid $gray-200;
+    }
+  }
+}

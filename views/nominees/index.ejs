@@ -1,0 +1,138 @@
+<% include ../partials/header %>
+<% include ../partials/modules/login-modal %>
+<div class="row">
+  <div class="container">
+    <div class="row justify-content-lg-center">
+      <!-- <div class="col-lg-12"> -->
+      <div class="col-lg-9"> <!-- switch with other depending on columns -->
+        <div class="listHeader">
+          <div class="listHeadline">
+            <h1><span>Nominees</span><i class="fas fa-sparkles"></i></h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div id="listjsContainer">
+    <div class="row justify-content-lg-center">
+      <!-- <div class="col-lg-12"> -->
+      <div class="col-lg-9"> <!-- switch with other depending on columns -->
+        <div class="listTools">
+          <% include ../partials/modules/noms-list-search %>
+          <% include ../partials/modules/noms-list-sort %>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-lg-center">
+<!--      <div class="col-lg-3">
+        <div class="flexTool infoTool">
+          <h3>How does this work?</h3>
+          <div class="infoText">Nominees are suggested by users. Hit the <i class="fas fa-arrow-alt-up"></i> to upvote if you think it belongs here, or submit your own below.</div>
+          <div class="infoText">Each month we’ll add the most upvoted to the official directory. (Or if we find nobody bothers, we’ll drop the voting but keep the submission form around.)</div>
+          <% if(currentUser){ %>
+            <div>
+              <a class="nomButton btn btn-sm" href="/nominees/new">Submit a Nomination</a>
+            </div>
+          <% } else { %>
+            <div>
+              <button type="button" class="nomButton btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#loginModal">Submit a Nomination</button>
+            </div>
+          <% } %>
+        </div>
+      </div> -->
+      <div class="col-lg-9">
+        <div class="listjs">
+          <!-- Main nominees index -->
+          <% nominees.forEach((nom) => { %>
+            <div class="card indexCard nomCard">
+              <div class="card-body">
+                <!-- List.js hack: Hidden ul + nomineeSchema virtuals -->
+                <ul class="hide">
+                  <li class="nomTitle"><%= nom.sorttitle %></li>
+                  <li class="nomKind"><%= nom.kind %></li>
+                  <li class="nomSubkind"><%= nom.subkind %></li>
+                  <li class="nomMakers"><%= nom.allmakers %></li>
+                  <li class="nomCreated"><%= moment().diff(nom.createdAt) %></li>
+                  <li class="nomLikes"><%= nom.likes %></li>
+                </ul>
+                <!--  -->
+                <div class="cardContent">
+                  <div class="cardHeader">
+                    <h2 class="card-title nomTitle">
+                      <%= nom.title %>
+                    </h2>
+                    <div class="card-subtitle">
+                      <div class="cardMeta">
+                        <% if(nom.makers){ %>
+                          <div class="cardMakers">
+                          <% nom.makers.forEach((maker) => { %>
+                            <div class="metaItem metaItemMaker"><%= maker %></div>
+                          <% }); %>
+                          </div>
+                          <div class="metaItem metaDivider metaLight">&bull;</div>
+                        <% } %>
+                        <% if(nom.subkind){ %>
+                          <div class="metaItem"><%= nom.subkind %></div>
+                        <% } else { %>
+                          <div class="metaItem"><%= nom.kind %></div>
+                        <% } %>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="nomDescription"><%= nom.description %></div>
+                  <div class="cardTags">
+                    <div class="tagItem badge badge-light createdAtItem"><span><%= moment.utc(nom.createdAt).fromNow() %> via<a class="nomUsername" href="https://twitter.com/<%= nom.user.username %>" target="_blank">@<%= nom.user.username %></a></span></div>
+                  </div>
+                </div>
+                <div class="cardActions">
+                  <!-- Nominee id in hidden li for like button ajax post... bit of a hack -->
+                  <div class="nomId hide"><%= nom.id %></div>
+                  <!-- Show different like button / modify class based on login state and past likes -->
+                  <% if(currentUser){ %>
+                    <div class="actionItem">
+                    <% if(currentUser.id === nom.user.id){ %>
+                      <button type="button" class="actionButton upvoteButton disabledLike disabled btn">
+                        <i class="fas fa-arrow-alt-up"></i>
+                        <span class="likeCount"><%= nom.likes %></span>
+                      </button>
+                    <% } else if(currentUser.nomLikes.map(String).includes(nom.id) === true) { %>
+                      <button type="button" class="actionButton upvoteButton unlikeButton btn">
+                        <i class="fas fa-arrow-alt-up"></i>
+                        <span class="likeLabel">-1</span>
+                        <span class="likeCount"><%= nom.likes %></span>
+                      </button>
+                    <% } else { %>
+                      <button type="button" class="actionButton upvoteButton likeButton btn">
+                        <i class="fas fa-arrow-alt-up"></i>
+                        <span class="likeLabel">+1</span>
+                        <span class="likeCount"><%= nom.likes %></span>
+                      </button>
+                    <% } %>
+                    </div>
+                  <% } else { %>
+                    <div class="actionItem">
+                      <button type="button" class="actionButton upvoteButton loginButton btn" data-toggle="modal" data-target="#loginModal">
+                        <i class="fas fa-arrow-alt-up"></i>
+                        <span class="likeCount"><%= nom.likes %></span>
+                        <span class="likeLabel">+1</span>
+                      </button>
+                    </div>
+                  <% } %>
+                  <div class="actionItem">
+                    <a class="actionButton externalLink btn" href="<%= nom.url %>" target="_blank">
+                      <span>View</span><i class="far fa-external-link-square"></i> 
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% }); %>
+        </div>
+        <% include ../partials/modules/links-list-noresults %>
+      </div>
+    </div>
+  </div>
+</div>
+<% include ../partials/footer %>

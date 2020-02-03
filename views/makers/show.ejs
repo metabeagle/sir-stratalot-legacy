@@ -1,0 +1,49 @@
+<% include ../partials/header %>
+<% include ../partials/modules/login-modal %>
+<div class="row">
+  <div class="container">
+    <div class="row justify-content-lg-center">
+      <div class="col-lg-9">
+        <div class="linkTitle makerTitle">
+          <h1 class="balance-text"><%= maker.sortname %></h1>
+          <div class="linkSubtitle">
+            <% maker.channels.forEach((channel) => { %>
+              <div class="metaItem makerHeaderChannel">
+              <a target="_blank" href="<%= channel.url %>">
+                <i class="<%= channel.icon %>"></i>
+                <span><%= channel.name %></span>
+              </a>
+              </div>
+            <% }); %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row justify-content-lg-center">
+    <div class="col-lg-9">
+      <div id="listjsContainer">
+        <div class="listjs">
+        <!-- Main links index -->
+        <% include ../partials/modules/links-list %>
+        <% include ../partials/modules/sources-list %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-lg-center">
+    <div class="col-lg-12">
+      <% if (currentUser && currentUser.role === 'admin') { %>
+        <div class="adminTool">
+          <a class="adminButton btn btn-outline-warning" href="/makers/<%= maker.slug %>/edit">Edit Maker</a>
+          <form id="delete-form" class="d-inline" action="/makers/<%= maker._id %>?_method=DELETE" method="POST">
+            <button class="adminButton btn btn-outline-danger">Delete Maker</button>
+          </form>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</div>
+<% include ../partials/footer %>

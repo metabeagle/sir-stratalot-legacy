@@ -1,0 +1,63 @@
+.pageCard {
+	border: none;
+	border-radius: $card-border-radius;
+	border: 1px solid $gray-200;
+	margin-bottom: 1rem;
+	@include media-breakpoint-down(md) {
+		// margin-bottom: ($spacer * 0.5);
+		margin-left: 0.25rem;
+		margin-right: 0.25rem;
+	}
+	.card-body {
+		padding: 1.5rem;
+		// max-width: 60ch;
+		letter-spacing: -0.011em;
+		@include media-breakpoint-down(md) {
+			// flex-wrap: wrap;
+		}
+	}
+	li {
+		margin-bottom: ($spacer / 2);
+	}
+	h2 {
+		font-size: $h5-font-size;
+		letter-spacing: -0.017em;
+		font-weight: 600;
+	}
+	strong {
+		font-weight: 600;
+	}
+	em {
+		// font-weight: 500;
+	}
+	.anchor {
+		display: block;
+		position: relative;
+		top: ($spacer * -5);
+		visibility: hidden;
+	}
+}
+
+.pageLinks {
+	background: none;
+	z-index: 80;
+	position: sticky;
+	top: 4.75rem;
+	font-size: $font-size-sm;
+	.card-body {
+		padding: 0;
+		padding-right: 0.5rem;
+		letter-spacing: normal;
+		@include media-breakpoint-down(md) {
+			padding-left: 1.5rem;
+			padding-right: 1.5rem;
+		}
+	}
+	.card-text {
+		a {
+			&:hover {
+				border: none;
+			}
+		}
+	}
+}

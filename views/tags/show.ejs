@@ -1,0 +1,72 @@
+<% include ../partials/header %>
+<% include ../partials/modules/login-modal %>
+<div class="row">
+  <div class="container">
+    <div class="row justify-content-lg-center">
+      <div class="col-lg-12">
+      <!-- <div class="col-lg-9"> --> <!-- switch with other depending on columns -->
+        <div class="listHeader">
+          <div class="listHeadline">
+            <% if(tag.slug === 'support'){ %>
+              <h1 class="balance-text"><i class="fas fa-heart tagIcon"></i><span>support sir stratalot</h1>
+            <% } else { %>
+              <h1 class="balance-text"><i class="fas fa-tag tagIcon"></i><span><%= tag.tag %></span></h1>
+            <% } %>
+          </div>
+          <% if(tag.slug === 'support'){ %>
+          <div class="linkSubtitle text-center">
+            Partner links that may earn us commission and help support this project. <a href="/about#affiliatelinks">Learn more</a>
+          </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div id="listjsContainer">
+    <div class="row justify-content-lg-center">
+      <div class="col-lg-12">
+      <!-- <div class="col-lg-9"> --> <!-- switch with other depending on columns -->
+        <div class="listTools">
+          <% include ../partials/modules/links-list-search %>
+          <% include ../partials/modules/links-list-sort %>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-lg-center">
+      <div class="col-lg-3">
+        <div class="toolContainer">
+          <% include ../partials/modules/links-list-filter %>
+        </div>
+      </div>
+      <div class="col-lg-9">
+        <div class="listjs">
+          <!-- Main links index -->
+          <% include ../partials/modules/links-list %>
+        </div>
+        <% include ../partials/modules/links-list-noresults %>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-lg-center">
+    <div class="col-lg-12">
+      <% if (currentUser && currentUser.role === 'admin') { %>
+        <div class="adminTool">
+          <a class="adminButton btn btn-outline-warning" href="/tags/<%= tag.slug %>/edit">Edit Tag</a>
+          <form id="delete-form" class="d-inline" action="/tags/<%= tag._id %>?_method=DELETE" method="POST">
+            <button class="adminButton btn btn-outline-danger">Delete Tag</button>
+          </form>
+          <a class="adminButton btn btn-outline-secondary" href="/tags/<%= tag.slug %>/featured">
+            <% if(tag.featured === true) { %>
+              Unset Featured
+            <% } else { %>
+              Set Featured
+            <% } %>
+          </a>
+        </div>
+      <% } %>
+    </div>
+  </div>  
+</div>
+<% include ../partials/footer %>

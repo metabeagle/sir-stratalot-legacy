@@ -1,0 +1,16 @@
+.userDropdown {
+	padding-top: 0.3125rem;
+	padding-bottom: 0.3125rem;
+}
+
+.userDropdownMenu {
+	font-size: $font-size-sm;
+	border-radius: 0.1875rem;
+	.dropdown-item {
+	}
+}
+
+.userPhoto {
+	height: 1.875rem;
+	border-radius: 50%
+}

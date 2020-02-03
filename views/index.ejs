@@ -1,0 +1,126 @@
+<% include partials/header %>
+<div class="row indexBlock">
+  <div class="container">
+    <div class="row justify-content-lg-center">
+      <div class="jumbotron text-center indexJumbo">
+        <div class="smallHead">The useful site with the stupid name&trade;</div>
+        <h1 class="balance-text">Sir Stratalot is a growing directory of planning and strategy links.</h1>
+        <div class="indexSubtitle">Articles, books, reports, research, tools, communities, and more.</div>
+        <div class="searchContainer">
+          <div id="bloodhound">
+            <span class="searchIcon"><i class="far fa-search"></i></span>
+            <input id="searchInput" class="form-control form-control-lg typeahead" type="text" placeholder="Search for anything—try “planning” or “howto”">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row alertBlock">
+  <div class="container">
+    <div class="row justify-content-lg-center">
+      <div class="alert indexAlert">
+        <strong>Hey!</strong> We’ve already added <strong><%= linkCount %></strong> links, but we’ve still got a couple hundred more to process. Stay tuned.
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row justify-content-lg-center">
+    <div class="featureBlock">
+      <div class="featureHead">
+        <h2>Recommended Tags<i class="fas fa-tag"></i></h2>
+        <div class="featureSubtitle balance-text">Not sure where to begin? Try exploring one of these perennially popular topics, or <a class="featuredAllTags" href="/tags">browse all tags</a>.</div>
+      </div>
+      <div class="tagFeature">
+        <ul>
+          <% recommendedTags.forEach((tag) => { %>
+            <a class="featuredTag" href="/tags/<%=tag.slug%>">
+              <li><%= tag.tag %>
+                <span><%= tag.count %></span>
+              </li>
+            </a>
+          <% }); %>
+        </ul>
+      </div>
+      </div>
+    <div class="featureBlock linkFeature">
+      <div class="featureHead">
+        <h2>New & Popular Links<i class="fas fa-list-ul"></i></h2>
+        <div class="featureSubtitle balance-text">Check out the most recent additions and most upvoted links, or <a class="featuredAllLinks" href="/links">view the full directory</a>.</div>
+      </div>
+      <div class="featureSet">
+        <div class="featureUnit">
+          <h2>Recently Added<i class="far fa-calendar"></i></h2>
+          <ul>
+            <% newLinks.forEach((link) => { %>
+              <a class="recentLink" href="/links/<%=link.slug%>">
+                <li><span class="linkHrefTitle"><%= link.title.split(':',1)[0] %></span>
+                  <span class="linkCategory"><%= link.subkind %></span>
+                </li>
+                <span class="linkAdded"><%= moment.utc(link.createdAt).fromNow(true) %></span>
+              </a>
+            <% }); %>
+          </ul>
+        </div>
+        <div class="featureUnit">
+          <h2>Most Upvoted<i class="fas fa-arrow-alt-up"></i></h2>
+          <ul>
+            <% popularLinks.forEach((link) => { %>
+              <a class="popularLink" href="/links/<%=link.slug%>">
+                <li><span class="linkHrefTitle"><%= link.title.split(':',1)[0] %></span>
+                  <span class="linkCategory"><%= link.subkind %></span>
+                </li>
+                <span class="linkLikes"><i class="fas fa-arrow-alt-up"></i><%= link.likes %></span>
+              </a>
+            <% }); %>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row justify-content-lg-center">
+    <div class="mainBlock">
+      <div class="indexUnit">
+        <div class="indexUnitImage">⚠️</div>
+        <div class="indexUnitContent">
+          <h2>Beta release</h2>
+          <div>Sir Stratalot is very much in beta, so please give us a shout if it breaks or otherwise misbehaves.</div>
+        </div>
+        <a class="btn btn-outline-primary" href="/about#somethingbroke">Contact us</a>
+      </div>
+      <% if(currentUser){ %>
+      <div class="indexUnit">
+        <div class="indexUnitImage"><i class="fab fa-twitter"></i></div>
+        <div class="indexUnitContent">
+          <h2>Follow for updates</h2>
+          <div>The easy way to find out about new resources or features... and probably some other stuff as well.</div>
+        </div>
+        <a class="btn btn-outline-primary" target="_blank" href="https://twitter.com/sirstratalot"><i class="fab fa-twitter"></i>@sirstratalot</a>
+      </div>
+      <% } else { %>
+      <div class="indexUnit">
+        <div class="indexUnitContent">
+          <div class="indexUnitImage"><i class="fab fa-twitter"></i></div>
+          <h2>Sign in</h2>
+          <div>Let’s make this thing better together. Sign in to upvote the best links and submit your own finds.</div>
+        </div>
+        <a class="twitterLoginButton btn" href="/auth/twitter"><i class="fab fa-twitter"></i>Sign in with Twitter</a>
+      </div>
+      <% } %>
+      <div class="indexUnit">
+        <div class="indexUnitImage">⚔️</div>
+        <div class="indexUnitContent">
+          <h2>Support us</h2>
+          <div>Finding awesome and useful stuff here? Then we’d love your support to help keep this project going.</div>
+        </div>
+        <a class="btn btn-outline-primary" href="/contribute">Learn how</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+<% include partials/footer %>

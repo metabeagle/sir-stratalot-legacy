@@ -1,0 +1,122 @@
+<% links.forEach((link) => { %>
+
+<div class="card indexCard">
+  <div class="card-body">
+    <!-- List.js -->
+    <ul class="hide">
+      <li class="linkObjId linkId"><%= link.id %></li>
+      <li class="linkTitle"><%= link.sorttitle %></li>
+      <li class="linkKind"><%= link.kind %></li>
+      <% if(link.subkind){ %>
+        <li class="linkSubkind"><%= link.subkind %></li>
+      <% } %>
+      <li class="linkMakers"><%= link.allmakers %></li>
+      <li class="linkTags"><%= link.alltags %></li>
+      <% if(link.cost){ %>
+        <li class="linkCost"><%= link.cost %></li>
+      <% } %>
+      <% if(link.location){ %>
+        <li class="linkLoc"><%= link.location %></li>
+      <% } %>
+      <li class="linkCreated"><%= moment().diff(link.createdAt) %></li>
+      <li class="linkLikes"><%= link.likes %></li>
+    </ul>
+    <div class="cardContent">
+      <div class="cardHeader">
+        <h2 class="card-title">
+          <a href="/links/<%= link.slug %>"><%= link.title %></a>
+        </h2>
+        <div class="card-subtitle">
+          <div class="cardMeta">
+            <div class="cardMakers">
+            <% link.makers.forEach((maker) => { %>
+              <div class="metaItem metaItemMaker">
+                <a href="/makers/<%= maker.slug %>"><%= maker.sortname %></a>
+              </div>
+            <% }); %>
+            </div>
+            <% if(link.published){ %>
+              <div class="metaItem metaDivider">&bull;</div>
+              <% if(link.kind === 'Book'){ %>
+                <div class="metaItem"><%= moment.utc(link.published).format("YYYY") %></div>
+              <% } else { %>
+                <div class="metaItem"><%= moment.utc(link.published).format("MMM YYYY") %></div>
+              <% } %>
+            <% } %>
+            <% if(link.subkind){ %>
+              <div class="metaItem metaDivider">&bull;</div>
+              <div class="metaItem"><%= link.subkind %></div>
+            <% } else { %>
+              <div class="metaItem"><%= link.kind %></div>
+            <% } %>
+            <% if(link.cost){ %>
+              <div class="metaItem metaDivider">&bull;</div>
+              <div class="metaItem"><%= link.cost %></div>
+            <% } %>
+
+            <% if(link.location){ %>
+              <div class="metaItem metaDivider">&bull;</div>
+              <div class="metaItem"><%= link.location %></div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+      <div class="cardTags">
+        <% link.tags.forEach((tag) => { %>
+          <% if(tag.slug === 'support') { %>
+            <a class="tagItem badge badge-light supportTag" href="/tags/<%= tag.slug %>"><%= tag.tag %></a>
+          <% } else { %>
+            <a class="tagItem badge badge-light" href="/tags/<%= tag.slug %>"><%= tag.tag %></a>
+          <% } %>
+        <% }); %>
+        <div class="tagItem badge badge-light createdAtItem"><span><%= moment.utc(link.createdAt).fromNow() %></span></div>
+        <% if(link.flags > 0){ %>
+          <div class="tagItem badge badge-light deadItem">
+            <i class="fas fa-skull-crossbones"></i><span><%= link.flags %></span>
+          </div>
+        <% } %>
+      </div>
+    </div>
+    <div class="cardActions">
+      <!-- Link id in hidden li for like ajax -->
+      <div class="linkId hide"><%= link.id %></div>
+      <!-- Show different like button / modify class based on login and past likes -->
+      <% if(currentUser){ %>
+        <div class="actionItem">
+        <% if(currentUser.likes.map(String).includes(link.id) === true){ %>
+          <button type="button" class="actionButton unlikeButton upvoteButton btn">
+            <i class="fas fa-arrow-alt-up"></i>
+            <span class="likeLabel">-1</span>
+            <span class="likeCount"><%= link.likes %></span>
+          </button>
+        <% } else { %>
+          <button type="button" class="actionButton likeButton upvoteButton btn">
+            <i class="fas fa-arrow-alt-up"></i>
+            <span class="likeLabel">+1</span>
+            <span class="likeCount"><%= link.likes %></span>
+          </button>
+        <% } %>
+        </div>
+      <% } else { %>
+        <div class="actionItem">
+          <button type="button" class="actionButton loginButton upvoteButton btn" data-toggle="modal" data-target="#loginModal">
+            <i class="fas fa-arrow-alt-up"></i>
+            <span class="likeLabel">+1</span>
+            <span class="likeCount"><%= link.likes %></span>
+          </button>
+        </div>
+      <% } %>
+      <div class="actionItem">
+          <a class="actionButton externalLink btn" href="<%= link.url %>" target="_blank">
+            <% if(link.subkind === 'Book' || link.amazon === true) { %>
+              <span>Amazon</span>
+            <% } else { %>
+              <span>Link</span>
+            <% } %>
+            <i class="far fa-external-link-square"></i>
+          </a>
+      </div>
+    </div>
+  </div>
+</div>
+<% }); %>

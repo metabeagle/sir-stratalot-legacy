@@ -1,0 +1,103 @@
+#CybotCookiebotDialog {
+	font-family: $font-family-sans-serif !important;
+	background: #e63946 !important;
+	line-height: $line-height-sm !important;
+	#CybotCookiebotDialogBody {
+		max-width: 75% !important;
+		padding: $spacer 0 !important;
+		.CybotCookiebotDialogBodyButton {
+			display: flex !important;
+			border-radius: $btn-border-radius-sm !important;
+			white-space: normal !important;
+		}
+	}
+	#CybotCookiebotDialogBodyContentTitle {
+		font-family: $font-family-sans-serif !important;
+		font-size: $font-size-base !important;
+		font-weight: 600 !important;
+		text-align: center !important;
+	}
+	#CybotCookiebotDialogBodyContentText {
+		font-family: $font-family-sans-serif !important;
+		font-size: $font-size-sm !important;
+		font-weight: normal !important;
+		line-height: $line-height-sm !important;
+		letter-spacing: ($spacer * 0.01);
+		text-align: center !important;
+	}
+	#CybotCookiebotDialogBodyButtons {
+		display: flex !important;
+		justify-content: center !important;
+	}
+	#CybotCookiebotDialogBodyButtonDecline {
+		font-family: $font-family-sans-serif !important;
+		font-size: $font-size-sm !important;
+		font-weight: normal !important;
+		letter-spacing: ($spacer * 0.01);
+		padding: ($spacer * 0.375) ($spacer * 0.75) !important;
+		width: max-content !important;
+		max-width: 50% !important;
+		flex-basis: auto !important;
+		background-color: lighten(#e63946, 15%) !important;
+		border: none !important;
+	}
+	#CybotCookiebotDialogBodyButtonAccept {
+		font-family: $font-family-sans-serif !important;
+		font-size: $font-size-sm !important;
+		font-weight: normal !important;
+		letter-spacing: ($spacer * 0.01);
+		padding: ($spacer * 0.375) ($spacer * 0.75) !important;
+		width: max-content !important;
+		max-width: 50% !important;
+		flex-basis: auto !important;
+		background-color: #212529 !important;
+		border: none !important;
+	}
+	#CybotCookiebotDialogBodyButtons .CybotCookiebotDialogBodyLink {
+		display: none !important;
+		// font-family: $font-family-sans-serif !important;
+		// font-size: $font-size-sm !important;
+	}
+}
+
+// .cc-window {
+// 	font-size: $font-size-base;
+// 	font-family: $font-family-sans-serif;
+// 	line-height: 1.2;
+// 	.cc-message {
+// 		margin-right: ($spacer * 5);
+// 	}
+// 	.cc-btn {
+// 		border-radius: ($spacer * 0.1875);
+// 		font-size: $font-size-base;
+// 		font-weight: 600;
+// 		transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+// 		&:hover {
+
+// 		}
+// 	}
+// 	.cc-btn.cc-deny {
+// 		border: 1px solid $white;
+// 		&:hover {
+// 			text-decoration: none;
+// 		}
+// 	}
+// }
+
+// .cc-window.cc-floating {
+// 	@include media-breakpoint-down(md) {
+// 		.cc-link {
+// 			font-size: $font-size-sm;
+// 		}
+// 		font-size: $font-size-sm;
+// 		text-align: center;
+// 		max-width: 100%;
+// 		bottom: 0;
+// 		margin-bottom: 0;
+// 		padding: ($spacer * 2);
+// 		border-radius: 0;
+// 		.cc-message {
+// 			margin-right: 0;
+// 		}
+// 	}
+// }

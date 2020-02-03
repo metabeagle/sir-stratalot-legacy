@@ -1,0 +1,57 @@
+<% include ../partials/header %>
+<div class="row">
+  <div class="container">
+    <div class="row justify-content-lg-center">
+      <!-- <div class="col-lg-12"> --> <!-- switch with other depending on columns -->
+      <div class="col-lg-9">
+        <div class="headerDivider"></div>
+        <div class="linkTitle">
+          <h1 class="balance-text"><%= source.title %></h1>
+          <div class="linkSubtitle text-center">
+            <div class="linkMakers">
+              <% source.makers.forEach((maker) => { %>
+                <div class="metaItem metaItemMaker">
+                  <a href="/makers/<%= maker.slug %>"><%= maker.sortname %></a>
+                </div>
+              <% }); %>
+            </div>
+            <% if(source.published){ %>
+              <div class="metaItem metaDivider">&bull;</div>
+              <div class="metaItem"><%= moment.utc(source.published).format("MMMM YYYY") %></div>
+            <% } %>
+            <div class="metaItem metaDivider">&bull;</div>
+            <div class="metaItem">Source</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row justify-content-lg-center showContainer">
+    <!-- <div class="col-lg-2"></div> -->
+    <div class="col-lg-7">
+      <div class="card showCard">
+        <div class="card-body">
+          <div class="showDescription"><%= source.description %></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2">
+      <div class="flexTool showTool"><a class="actionButton externalLink sourceButton btn" href="<%= source.url %>" target="_blank"><span>View</span><i class="far fa-external-link-square"></i></a></div>
+    </div>
+  </div>
+  <div class="row justify-content-lg-center">
+    <div class="col-lg-12">
+      <% if (currentUser && currentUser.role === 'admin') { %>
+        <div class="adminTool">
+          <a class="adminButton btn btn-outline-warning" href="/sources/<%= source.slug %>/edit">Edit Source</a>
+          <form id="delete-form" class="d-inline" action="/sources/<%= source._id %>?_method=DELETE" method="POST">
+            <button class="adminButton btn btn-outline-danger">Delete Source</button>
+          </form>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</div>
+<% include ../partials/footer %>

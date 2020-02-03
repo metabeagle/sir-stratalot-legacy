@@ -1,0 +1,10 @@
+$hamburger-padding-x: 0.5rem;
+$hamburger-padding-y: 0.5rem;
+$hamburger-types: (slider-r);
+$hamburger-hover-opacity: 1.0;
+$hamburger-hover-use-filter: false;
+$hamburger-layer-color: $dark;
+
+.hamburger:active, .hamburger:focus, .hamburger:active:focus {
+	outline: none;
+}

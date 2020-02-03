@@ -1,0 +1,147 @@
+<% include ../partials/header %>
+<div class="row justify-content-lg-center lightblueBlock">
+  <div class="col-lg-9">
+    <div class="jumbotron formTitle text-center">
+      <h1>Edit Link</h1>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row justify-content-lg-center">
+    <div class="col-lg-9">
+      <div class="formContainer">
+        <form id="#editLinkForm" action="/links/<%= link._id %>?_method=PUT" method="POST">
+          <input type="hidden" name="link[kind]" value="<%= link.kind %>">
+          <% if(link.subkind){ %>
+            <div class="form-group">
+              <select class="custom-select" name="link[subkind]">
+                <option value="<%= link.subkind %>" selected><%= link.subkind %></option>
+                <option value="Article">Article</option>
+                <option value="Blog">Blog</option>
+                <option value="Book">Book</option>
+                <option value="Case Study">Case Study</option>
+                <option value="Community">Community</option>
+                <option value="Education">Education</option>
+                <option value="Meta">Meta Resource</option>
+                <option value="Newsletter">Newsletter</option>
+                <option value="Opportunity">Opportunity</option>
+                <option value="Presentation">Presentation</option>
+                <option value="Reference">Reference Material</option>
+                <option value="Report">Report</option>
+                <option value="Research">Research Source</option>
+                <option value="Research Tool">Research Tool</option>
+                <option value="Service">Service</option>
+                <option value="Toolkit">Toolkit</option>
+                <option value="Utility">Utility</option>
+                <option value="Video">Video</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          <% } %>
+          <div class="form-group">
+            <input class="form-control" type="text" name="link[title]" placeholder="Title" value="<%= link.title %>">
+          </div>
+          <div class="form-group">
+            <select id="makerSelect" type-="text" name="link[makers]" style="width: 100%" multiple></select>
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" name="link[description]" placeholder="Description" rows="4"><%= link.description %></textarea>
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="text" name="link[url]" placeholder="URL" value="<%= link.url %>">
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="text" name="link[imgurl]" placeholder="Image URL" value="<%= link.imgurl %>">
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="text" name="link[logourl]" placeholder="Logo URL" value="<%= link.logourl %>">
+          </div>
+          <% if(link.kind === 'Single'){ %>
+            <div class="form-group">
+              <input class="form-control" type="text" name="link[embedurl]" placeholder="Embed URL" value="<%= link.embedurl %>">
+            </div>
+          <% } %>
+          <div class="form-group">
+            <select id="tagSelect" type-="text" name="link[tags]" style="width: 100%" multiple></select>
+          </div>
+          <% if(link.published){ %>
+            <div class="form-group">
+              <input class="form-control" type="date" name="link[published]" value="<%= moment.utc(link.published).format('YYYY-MM-DD') %>">
+            </div>
+          <% } %>
+
+          <% if(link.kind === 'Book'){ %>
+            <div class="form-group">
+              <input class="form-control" type="text" name="link[asin]" placeholder="ASIN" value="<%= link.asin %>">
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="text" name="link[isbn]" placeholder="ISBN" value="<%= link.isbn %>">
+            </div>
+          <% } %>
+          <% if(link.kind === 'Tool'){ %>
+            <div class="form-group">
+              <input class="form-control" type="text" name="link[cost]" placeholder="Cost (Free, Free Trial, Paid...)" value="<%= link.cost %>">
+            </div>    
+          <% } %>
+          <% if(link.kind === 'Extracurricular'){ %>
+            <div class="form-group">
+              <input class="form-control" type="text" name="link[location]" placeholder="Location (Facebook, Slack, NYC, London, Global...)" value="<%= link.location %>">
+            </div>    
+          <% } %>
+          <div class="form-group">
+            <select id="sourceSelect" type-="text" name="link[sources]" style="width: 100%" multiple></select>
+          </div>
+          <div class="form-group form-row">
+            <div class="col">
+              <input class="form-control" type="text" name="link[attribution][label]" placeholder="Attribution label" <% if(link.attribution) { %>value="<%= link.attribution.label %>"<% } %>>
+            </div>
+            <div class="col">
+              <input class="form-control" type="text" name="link[attribution][url]" placeholder="Attribution URL" <% if(link.attribution) { %>value="<%= link.attribution.url %>"<% } %>>
+            </div>
+            <!-- <div class="col">
+              <input class="form-control" type="text" name="link[attribution][tweetid]" placeholder="Tweet ID" <% if(link.attribution) { %>value="<%= link.attribution.tweetid %>"<% } %>>
+            </div> -->
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="text" name="link[slug]" placeholder="Slug" value="<%= link.slug %>">
+          </div>  
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">Update</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+<% include ../partials/modules/footer-scripts %>
+<!-- Provide select2 with (pre)selected values, from response object -->
+<script defer>
+$(document).ready(function(){
+  var makers = <%- JSON.stringify(link.makers) %>;
+  makers.forEach((maker) => {
+    var $option = $("<option selected></option>");
+    $option.val(maker._id);
+    $option.text(maker.sortname);
+    $("#makerSelect").append($option);
+    $("#makerSelect").trigger("change");
+  });
+  var sources = <%- JSON.stringify(link.sources) %>;
+  sources.forEach((source) => {
+    var $option = $("<option selected></option>");
+    $option.val(source._id);
+    $option.text(source.title);
+    $("#sourceSelect").append($option);
+    $("#sourceSelect").trigger("change");
+  });
+  var tags = <%- JSON.stringify(link.tags) %>;
+  tags.forEach((tag) => {
+    var $option = $("<option selected></option>");
+    $option.val(tag._id);
+    $option.text(tag.tag);
+    $("#tagSelect").append($option);
+    $("#tagSelect").trigger("change");
+  });
+});
+</script>
+<% include ../partials/modules/footer-end %>

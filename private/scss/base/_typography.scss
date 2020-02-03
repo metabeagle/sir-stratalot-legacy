@@ -1,0 +1,32 @@
+// Inter
+@import url('https://rsms.me/inter/inter.css');
+  html { font-family: 'Inter', sans-serif; }
+@supports (font-variation-settings: normal) {
+  html { font-family: 'Inter var', sans-serif; }
+}
+// Tiempos
+@font-face {
+    font-family: tt;
+    src: url('/fonts/TiemposTextWeb-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+// General type stuff
+html {
+  font-size: $font-size-base;
+}
+// Responsive type
+html {
+  @include media-breakpoint-up(sm) {
+      font-size: ($font-size-base * 2);
+  }
+  @include media-breakpoint-up(md) {
+    font-size: ($font-size-base * 2);
+  }
+  @include media-breakpoint-up(lg) {
+    font-size: $font-size-base;
+  }
+}
+strong {
+  font-weight: 600;
+}

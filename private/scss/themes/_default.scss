@@ -1,0 +1,1224 @@
+// Base
+
+body {
+  background: $light;
+  background: #fafafa;
+  color: $dark;
+}
+
+a {
+  color: $primary;
+  &:hover {
+    color: $dark;
+  }
+}
+
+.jumbotron {
+  background: none;
+  .smallHead {
+    color: #9ca2a9;
+  }
+}
+
+// Layout / Navbar
+.navbar {
+  background: $white;
+  border-color: $gray-300;
+  .navbar-brand {
+    color: $dark;
+    &:hover {
+      text-shadow: 0 0 .125rem rgba(0,0,0,0.25);
+    }
+  }
+  @include media-breakpoint-down(md){
+    .nav-link {
+      &:hover, &:focus {
+        color: $secondary;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(md){
+  .offcanvas-collapse {
+    background: $white;
+    .nav-item {
+      // border-color: $dark;
+      .nav-link, .navBarLogin {
+        color: $dark;
+        &:hover, &:focus {
+          color: $dark;
+          .fa-list-ul {
+            color: $primary;
+          }
+          .fa-tag {
+            color: $warning;
+          }
+          .fa-feather-alt {
+            color: $pink;
+          }
+          .fa-book-open {
+            color: #73b7ff;
+          }
+          .fa-star-of-life {
+            color: $gray-600;
+          }
+          .fa-sparkles {
+            color: $info;
+          }
+          .fa-twitter {
+            color: #1da1f2;
+          } 
+        }
+      }
+      .nav-link.homeLink {
+        filter: brightness(0) saturate(100%) invert(22%) sepia(6%) saturate(1196%) hue-rotate(169deg) brightness(84%) contrast(88%);
+        &:hover, &:focus {
+          color: $dark;
+          filter: none;
+        }
+      }
+    }
+    .navSecondary {
+      .nav-item .nav-link {
+        i {
+          color: #9ca2a9;
+        }
+        color: #9ca2a9;
+        &:hover, &:focus {
+          color: $dark;
+          .fa-question-circle {
+            color: $primary;
+          }
+          .fa-heart {
+            color: $danger;
+          }
+          .fa-twitter {
+            color: #1da1f2;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Layout / Header
+
+.indexBlock {
+  background-color: $dark;
+  background: url('https://res.cloudinary.com/theholograms/image/upload/v1564158493/sirstratalot/DP820820-crop-343a40-multiply-1680-50percent.jpg') no-repeat center center;
+  background-size: cover;
+  .smallHead, .indexSubtitle {
+    color: #9ca2a9;
+    text-shadow: 0 0 .5rem rgba(0,0,0,0.5);
+  }
+  h1 {
+    color: $white;
+    text-shadow: 0 0 .5rem rgba(0,0,0,0.5);
+  }
+}
+
+.alertBlock {
+  background-color: #fff3cd;
+  border-color: #ffeeba;
+
+}
+
+.aboutBlock {
+  background-color: $primary;
+  background: url('https://res.cloudinary.com/theholograms/image/upload/v1564158493/sirstratalot/DP820820-crop-343a40-multiply-1680-50percent.jpg') no-repeat center center;
+  background-size: cover;
+  .smallHead, .indexSubtitle {
+    color: #9ca2a9;
+    text-shadow: 0 0 .5rem rgba(0,0,0,0.5);
+  }
+  h1 {
+    color: $white;
+    text-shadow: 0 0 .5rem rgba(0,0,0,0.5);
+  }
+}
+
+.contributeBlock {
+  background-color: $danger;
+  background: url('https://res.cloudinary.com/theholograms/image/upload/v1564158493/sirstratalot/DP820820-crop-343a40-multiply-1680-50percent.jpg') no-repeat center center;
+  background-size: cover;
+  .smallHead, .indexSubtitle {
+    color: #9ca2a9;
+    text-shadow: 0 0 .5rem rgba(0,0,0,0.5);
+  }
+  h1 {
+    color: $white;
+    text-shadow: 0 0 .5rem rgba(0,0,0,0.5);
+  }
+}
+
+.nomFormBlock {
+  background-color: $info;
+  background: url('https://res.cloudinary.com/theholograms/image/upload/v1564158493/sirstratalot/DP820820-crop-343a40-multiply-1680-50percent.jpg') no-repeat center center;
+  background-size: cover;
+  .smallHead, .indexSubtitle {
+    color: #9ca2a9;
+    text-shadow: 0 0 .5rem rgba(0,0,0,0.5);
+  }
+  h1 {
+    color: $white;
+    text-shadow: 0 0 .5rem rgba(0,0,0,0.5);
+  }
+}
+
+.alert.indexAlert {
+  color: #856404;
+}
+
+.userHeader {
+  .nav-pills {
+    .nav-link {
+      background: none;
+      color: $gray-500;
+      #listCount {
+        color: $gray-500;
+      }
+      &:hover {
+        background: #f3f4f6;
+        color: $primary;
+        #listCount {
+          color: $primary;
+        }
+      }
+    }
+    .nav-link.active {
+      background: #f3f4f6;
+      color: $dark;
+      #listCount {
+        color: #9ca2a9;
+      }
+    }
+  }
+}
+
+.linkTitle {
+  border-color: $gray-300;
+  @include media-breakpoint-down(md) {
+    border-color: transparent;
+  }
+}
+
+.linkTitle.makerTitle {
+  border-color: transparent;
+}
+
+.listHeadline {
+  h1 {
+    .fa-list-ul {
+      color: $primary;
+    }
+    .fa-tag {
+      color: $warning;
+    }
+    .fa-heart {
+      color: $danger;
+    }
+    .fa-feather-alt {
+      color: $pink;
+    }
+    .fa-book-open {
+      color: #73b7ff;
+    }
+    .fa-star-of-life {
+      color: $gray-600;
+    }
+    .fa-sparkles {
+      color: $info;
+    }
+  }
+}
+
+.linkSubtitle {
+  color: #9ca2a9;
+  a {
+    color: $text-muted;
+    &:hover {
+      color: $primary;
+      text-decoration: underline;
+    }
+  }
+  .metaDivider {
+    color: $gray-400;
+  }
+  .metaWarning {
+    color: $danger;
+  }
+  .makerHeaderChannel {
+    a {
+      color: #9ca2a9;
+      &:hover {
+        color: $primary;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.userTitle {
+  border-color: transparent;
+}
+
+// Layout / Footer
+
+footer {
+  background: $gray-900;
+  color: $gray-700;
+  a {
+    color: $gray-600;
+    &:hover {
+      color: $white;
+    }
+  }
+}
+
+// Components / Buttons
+
+.twitterLoginButton {
+  border-color: #1da1f2;
+  color: #1da1f2;
+  &:hover {
+    background: #1da1f2;
+    color: $white;
+  }
+
+.loginModal {}
+  @include media-breakpoint-down(md) {
+    background: #1da1f2;
+    color: $white;
+  }
+}
+
+.navBarLogin {
+
+}
+
+// Components / Forms
+
+#newNominee {
+  label {
+    color: $secondary;
+  }
+}
+
+.custom-select, .form-control {
+  border-color: $gray-300;
+}
+
+.custom-select:active, .custom-select:focus, .custom-select:active:focus, .form-control:active, .form-control:focus, .form-control:active:focus {
+  border-color: $primary;
+}
+
+.formDisabled {
+  border-color: $gray-300 !important;
+}
+
+.userDropdownMenu {
+  border-color: $gray-300;
+  .dropdown-item {
+    // color: $secondary;
+    color: #9ca2a9;
+    &:hover, &:focus {
+      background-color: $light;
+      color: $primary;
+    }
+  }
+}
+
+// Components / Login Modal
+
+#loginModal {
+  strong {
+    color: $dark;
+  }
+  .modal-body {
+    p {
+      color: $dark;
+    }
+  }
+  .modalSmallType {
+    color: $text-muted;
+  }
+}
+
+// Components / List Tools
+
+.listSearch {
+
+  i {
+    // color: $gray-500;
+    color: #9ca2a9;
+  }
+  .input-group {
+    .input-group-text {
+      background: #f3f4f6;
+    }
+    input {
+      background: #f3f4f6;
+      &::placeholder {
+        // color: $gray-500;
+        color: #9ca2a9;
+      }
+    }
+    .form-control {
+      color: $primary;
+    }
+    .form-control:focus {
+      color: $primary;
+    }
+  }
+}
+
+.listSort {
+  .btn {
+    background: #f3f4f6;
+    color: $gray-500;
+    &:hover {
+      color: $primary;
+    }
+  }
+  a {
+    // color: $secondary;
+    color: #9ca2a9;
+    &:hover {
+      color: $primary;
+    }
+  }
+
+  .dropdown-menu {
+    border-color: $gray-300;
+  }
+
+  .dropdown-item:active, .dropdown-item.active, .dropdown-item:focus, .dropdown-item:active:focus {
+      background: $light;
+      color: $primary;
+  }
+}
+
+// Components / Page Cards
+
+.pageCard {
+  border-color: $gray-300;
+
+  .card-text {
+    color: $dark;
+    a {
+      color: $primary;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    a.supportTag {
+      color: $danger;
+      &:hover {
+        color: $dark;
+        text-decoration: none;
+      }
+    }
+  }
+}
+.pageLinks {
+  border-color: transparent;
+  .pageLinksHeader {
+    color: #9ca2a9;
+  }
+}
+
+
+
+
+// Components / Index Cards
+
+
+.indexCard {
+  background: $white;
+  border-color: $gray-300;
+  color: #9ca2a9;
+  // .smallHead {
+  //  color: $gray-500;
+  //  color: #a8dadc;
+  // }
+  .card-subtitle {
+
+    a {
+      color: $secondary;
+      // font-weight: 500;
+      // color: $dark;
+      &:hover {
+        color: $primary;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .cardMeta {
+    // color: $text-muted;
+    .metaDivider {
+      color: $gray-400;
+    }
+  }
+
+
+
+  .tagItem {
+    background: none;
+    color: $secondary;
+    &:hover {
+      background: none;
+      color: $primary;
+      text-decoration: none;
+    }
+  }
+
+  .supportTag {
+    background: none;
+    color: $danger;
+    &:hover {
+      background: none;
+      color: $dark;
+      text-decoration: none;
+    }    
+  }
+
+  .createdAtItem {
+    background: none;
+    color: $gray-500;
+    // color: #9ca2a9;
+    &:hover {
+      background: none;
+      color: $gray-500;
+      // color: #9ca2a9;
+      text-decoration: none;
+    }
+  }
+
+  .deadItem {
+    background: none;
+    color: $gray-500;
+    &:hover {
+      background: none;
+      color: $gray-500;
+      text-decoration: none;
+    }
+  }
+
+  .cardActions {
+    // border-color: $light;
+  }
+
+  .makerCardActions {
+    .actionButton {
+      color: #9ca2a9;
+    }
+  }
+
+  .upvoteButton {
+    i {
+      color: $danger;
+    }
+  }
+
+  .likeButton {
+    span {
+      color: $dark;
+    }
+    @include media-breakpoint-up(lg) {
+      &:not(:focus):hover {
+        span {
+          color: $danger;
+        }
+      }
+    }
+  }
+
+  .unlikeButton {
+    span {
+      color: $danger;
+    }
+    @include media-breakpoint-up(lg) {
+      &:not(:focus):hover {
+        i {
+          color: $gray-500;
+        }
+        span {
+          color: $gray-500;
+        }
+      }
+    }
+  }
+
+  .loginButton {
+    span {
+      color: $dark;
+    }
+    @include media-breakpoint-up(lg) {
+      &:hover {
+        i {
+          color: $danger;
+        }
+        span {
+          color: $danger;
+        }
+      }
+    }
+  }
+
+  .disabled {
+    opacity: 1;
+    cursor: default;
+  }
+
+  .disabledLike {
+    color: $gray-500;
+    i {
+      color: $gray-500;
+    }
+  }
+
+  .externalLink {
+    // color: $dark;
+    color: $dark; 
+    &:hover {
+      color: $primary;
+    }
+  }
+
+}
+
+// Books index card style
+
+.bookTools {
+  .bookNav {
+    .nav-link {
+      // background: #f3f4f6;
+      color: $gray-500;
+      &:hover {
+        background: #f3f4f6;
+        color: $primary;
+      }
+    }
+    .active {
+      background: #f3f4f6;
+      span {
+        color: $dark;
+      }
+      .fa-arrow-alt-up {
+        color: $danger;
+      }
+      .fa-star-of-life {
+        color: $gray-600;
+      }
+      .fa-sort-alpha-down, .fa-calendar {
+        color: $secondary;
+      }
+      &:hover {
+        span {
+          color: $dark;         
+        }
+      }
+    }
+  }
+}
+
+.bookShelf {
+  .bookCard {
+    background: none;
+    .bookMetaItem {
+      color: $gray-400;
+      i {
+        color: $gray-400;      
+      }
+    }
+    .externalLink {
+      a {
+        color: $gray-400;
+      }
+    }
+    &:hover {
+      .bookMetaItem {
+        color: $secondary;
+        .fa-arrow-alt-up {
+          color: $danger;
+        }
+        .fa-star-of-life {
+          color: $gray-600;
+        }
+      }
+      .externalLink {
+        a {
+          color: $primary;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Tags index card style
+
+.tagMeta {
+  color: #9ca2a9;
+}
+
+.tagsContainer {
+  .indexCard {
+    background: #f3f4f6;
+    border-color: #f3f4f6;
+    &:hover {
+      a {
+        color: $dark;
+      }
+      background: #fff3cd; // warning alert bg
+      border-color: #ffeeba; // warning alert border
+    }
+  }
+}
+  
+// Nominees index card style
+
+.nomCard {
+  .nomTitle {
+    color: $dark;
+  }
+}
+
+.nomDescription {
+  // color: $dark;
+}
+
+.nomUser {
+  // color: $gray-500;
+  color: #9ca2a9;
+}
+a.nomUsername {
+  // a {
+    color: $secondary;
+    &:hover {
+      color: $primary;
+      text-decoration: underline;
+    }
+  // }
+}
+
+.nomSelf {
+  // color: $danger;
+}
+
+// User My Shit page index card style
+
+.userIndexCard {
+  background: none;
+  color: $text-muted;
+  h2 {
+    color: $dark;
+  }
+  .card-subtitle {
+    a {
+      color: $primary;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+#noResults {
+  background: none;
+  border-color: lighten($danger, 25%);
+  h2 {
+    color: $danger;
+  }
+  .card-subtitle {
+    color: $danger;
+  }
+}
+
+// Components / Show Cards
+
+.showCard {
+  background: none;
+  border-color: transparent;
+  @include media-breakpoint-down(md) {
+    background: $white;
+    border: 2px solid $gray-300;
+  }
+}
+
+.showDescription {
+  color: $dark;
+}
+
+.showSecondaryHead {
+  color: #9ca2a9;
+}
+
+.showTags {
+  .cardTags {
+
+  }
+  .tagItem {
+    background: #f3f4f6;
+    color: $text-muted;
+    &:hover {
+      // background: #cce5ff;
+      background: #fff3cd;
+      color: $dark;
+      // color: #004085;
+    }
+  }
+  .supportTag {
+    background: #f3f4f6;
+    color: $text-muted;
+    &:hover {
+      // background: #cce5ff;
+      background: #f8d7da;
+      color: $danger;
+      // color: #004085;
+    }
+  }
+  .tagSuggest {
+  }
+}
+.showSources {
+  .sourceItem {
+    color: #9ca2a9;
+    a {
+      color: #9ca2a9;
+      &:hover {
+        color: $primary;
+        text-decoration: underline;
+      }
+    }
+  }
+  .attributionItem {
+    color: #9ca2a9;
+    a {
+      color: $secondary;
+      &:hover {
+        color: $primary;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+// Components / index card list view pagination
+
+.pagination {
+  // background: #f3f4f6;
+  .page {
+    background: none;
+      color: #9ca2a9;
+      border: $pagination-border-width solid transparent;
+      &:hover {
+        background: #f3f4f6;
+        background: none;
+        color: $primary;
+      }
+  }
+  li {
+      &.active .page {
+        color: $dark;
+        background-color: #f3f4f6;
+        background: none;
+        border-color: none;
+    }
+      &.disabled .page {
+        color: $gray-300;
+      }
+  }
+}
+
+// Components / Flex Tools
+
+.flexTool {
+  .actionButton {
+    background: none;
+    color: $white;
+  }
+  .upvoteButton {
+    background: $danger;
+    &:hover {
+      background: darken($danger, 15%);
+    }
+    @include media-breakpoint-down(md){
+      background: none;
+      border: 2px solid $danger;
+      color: $dark;
+      i {
+        color: $danger;
+      }
+      &:hover {
+        background: none;
+      }
+    }
+  }
+  .unlikeButton {
+    i {
+      opacity: 0.5;
+    }
+    @include media-breakpoint-up(lg){
+      &:hover {
+        i {
+          opacity: 1.0;
+        }
+      }
+    }
+    @include media-breakpoint-down(md){
+      i {
+        opacity: 1;
+      }
+      color: $danger;
+      &:hover, &:focus, &:active {
+        background: none;
+        border-color: $danger;
+        color: $danger;
+      }
+    }
+  }
+
+  .externalLink {
+    justify-content: center;
+    background: $primary;
+    color: $white;
+    border-color: $primary;
+    .fa-amazon {
+      display: none;
+    }
+    &:hover {
+      background: darken($primary, 15%);
+      color: $white;
+    }
+    @include media-breakpoint-down(md){
+      background: none;
+      border: 2px solid $primary;
+      color: $primary;
+      &:hover, &:focus, &:active {
+        background: none;
+        border-color: $primary;
+        color: $primary;
+      }
+    }
+  }
+
+  .flagTool {
+    color: #9ca2a9;
+    i.deadItem, span.deadItem {
+      color: $danger;
+    }
+  }
+
+  .flagButton, .flagLoginButton {
+    color: #9ca2a9;
+    &:hover {
+      color: $danger;
+    }
+    &:disabled {
+      color: $gray-500;
+      &:hover {
+        color: $gray-500;
+      }
+    }
+  }
+}
+
+// FILTER TOOL
+
+.filterTool {
+  background: $white;
+  border-color: $gray-300;
+
+  .filterLink {
+    color: $text-muted;
+    .filterLabel {
+
+    }
+    .linkCount {
+      color: #9ca2a9;
+    }
+    &:hover {
+      background: #f3f4f6;
+      .filterLabel {
+        color: $primary;
+      }
+      .linkCount {
+        color: $primary;
+      }
+    }
+  }
+
+  .noResults {
+    .filterLabel {
+      color: $gray-300;
+    }
+    .linkCount {
+      color: $gray-300;
+    }
+  }
+
+  .active {
+    background: #f3f4f6;
+    .filterLabel {
+      color: $dark;
+    }
+    .linkCount {
+      background: $danger;
+      color: $white;
+    }
+    &:hover {
+      .filterLabel {
+        color: $dark;
+      }
+      .linkCount {
+        background: $danger;
+        color: $white;
+      }
+    }
+  }
+}
+
+.infoTool {
+  border-color: $gray-300;
+  background: $white;
+  h3 {
+    color: $danger;
+    color: $dark;
+  }
+  .infoText {
+    i {
+      color: $danger;
+    }
+    color: $text-muted;
+  }
+  .nomButton {
+    background: none;
+    border-color: $danger;
+    color: $danger;
+    &:hover {
+      background: $danger;
+      color: $white;
+    }
+    &:active {
+      background: $danger;
+      color: $white;
+    }
+  }
+}
+
+.makerChannels {
+  background: $light;
+  h3 {
+    color: $primary;
+  }
+  a {
+    color: #9ca2a9;
+    &:hover {
+      color: $primary;
+    }
+  }
+  @include media-breakpoint-down(md) {
+    background: none;
+    border-color: #a8dadc;
+  }
+}
+
+.userInfo {
+  background: none;
+  border-color: transparent;
+  h3 {
+    color: $dark;
+  }
+  .userInfoItem {
+    border-color: $gray-300;
+  }
+  .userInfoDesc {
+    color: $text-muted;
+  }
+  h4 {
+    color: #9ca2a9;
+  }
+  a {
+    color: #9ca2a9;
+    &:hover {
+      color: $dark;
+    }
+  }
+}
+
+// Pages / Index
+
+.featureBlock {
+  .featureHead {
+    .fa-tag {
+      color: $warning;
+    }
+    .fa-list-ul {
+      color: $primary;
+    }
+    .featureSubtitle {
+      color: #9ca2a9;
+    }
+  }
+}
+.tagFeature {
+  .featuredTag {
+    background: #f3f4f6;
+    border-color: #f3f4f6;
+    color: $secondary;
+    span {
+      color: #9ca2a9;
+    }
+    &:hover {
+      background: #fff3cd;
+      border-color: #ffeeba;
+      color: $dark;
+    }
+  }
+}
+
+.featureUnit {
+  h2 {
+    border-color: $dark;
+    .fa-calendar {
+      color: $secondary;
+    }
+    .fa-arrow-alt-up {
+      color: $danger;
+    }
+  }
+  ul {
+    a {
+      border-color: $gray-200;
+      .linkHrefTitle {
+        color: $secondary;
+      }
+      span {
+        color: #9ca2a9;
+      }
+      .linkAdded, .linkLikes {
+        color: $gray-400;
+        i {
+          color: $gray-400;
+        }
+      }
+      &:hover {
+        .linkHrefTitle {
+          color: $primary;
+        }
+        
+        background: #f3f4f6;
+        .linkLikes {
+          color: $dark;
+          i {
+            color: $danger;
+          }
+        }
+      }
+    }
+  } 
+}
+
+.indexUnit {
+  background: none;
+  border-color: transparent;
+  color: $text-muted;
+  .indexUnitImage {
+    .fa-twitter {
+      color: #1da1f2;
+    }
+  }
+  h2 {
+    color: $dark;
+  }
+  em {
+    color: $dark;
+  }
+  .supportTag {
+      color: $danger;
+    }
+  .btn, .twitterLoginButton {
+    background: none;
+    border-color: $primary;
+    color: $primary;
+    &:hover {
+      background-color: $primary;
+      color: $white;
+    }
+  }
+}
+
+.indexUnitSecondary {
+  h2, em {
+    color: $dark;
+  }
+  color: $text-muted;
+}
+
+// Vendors / Typeahead Search
+
+#bloodhound {
+  .searchIcon {
+    // color: $gray-500;
+    color: #9ca2a9;
+    color: $secondary;
+  }
+}
+
+span.twitter-typeahead {
+
+  input.typeahead {
+    background: $dark !important;
+    border-color: $dark;
+    &::placeholder {
+      color: #9ca2a9;
+      color: $secondary;
+    }
+    &:focus, &:active {
+      background-color: $white !important;
+      border-color: $primary;
+      box-shadow: 0 0 .5rem 0 rgba(0,0,0,0.1);
+    }
+  }
+  .tt-menu {
+    border-color: $primary;
+    box-shadow: 0 0.5rem .5rem 0 rgba(0,0,0,0.1);
+  }
+  .tt-hint {
+    color: #9ca2a9;
+  }
+  .tt-suggestion {
+    color: $dark;
+    .ttMeta {
+      color: #9ca2a9;
+    }
+  }
+  .ttNoResults {
+    color: #9ca2a9;
+    background: none;
+    &:hover {
+      color: #9ca2a9;
+      background: none;
+    }
+  }
+  .tt-suggestion.tt-cursor {
+    background-color: $primary;
+    background-color: #f3f4f6;
+    color: $white;
+    color: $primary;
+    .ttMeta {
+      color: #9ca2a9;
+    }
+  }
+  .ttHeader {
+    color: #9ca2a9;
+    &:hover {
+      color: #9ca2a9;
+    }
+  }
+}

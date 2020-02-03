@@ -1,0 +1,122 @@
+<% include ../partials/header %>
+<% include ../partials/modules/login-modal %>
+<div class="row">
+  <div class="container">
+    <div class="row justify-content-lg-center">
+      <!-- <div class="col-lg-12"> -->
+      <div class="col-lg-9"> <!-- switch with other depending on columns -->
+        <div class="listHeader">
+          <div class="listHeadline">
+            <h1><span>Makers</span><i class="fas fa-feather-alt"></i></h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div id="listjsContainer">
+    <div class="row justify-content-lg-center">
+      <!-- <div class="col-lg-12"> -->
+      <div class="col-lg-9"> <!-- switch with other depending on columns -->
+        <div class="listTools">
+          <% include ../partials/modules/makers-list-search %>
+          <% include ../partials/modules/makers-list-sort %>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-lg-center">
+      <!-- <div class="col-lg-3">
+        <div class="toolContainer">
+        <% include ../partials/modules/makers-list-filter %>
+        </div>
+      </div> -->
+      <div class="col-lg-9">
+        <div class="listjs">
+          <!-- Main makers index -->
+          <% makers.forEach((maker) => { %>
+            <% if(maker.sources > 0 || maker.links > 0){ %>
+              <div class="card indexCard">
+                <div class="card-body">
+                  <!-- List.js hack: Hidden ul, easier to keep all list items in one place -->
+                  <ul class="hide">
+                    <li class="makerKind"><%= maker.kind %></li>
+                    <li class="makerName"><%= maker.sortname %></li>
+                    <li class="makerLinks"><%= maker.links %></li>
+                  </ul>
+                  <!--  -->
+                  <div class="cardContent">
+                    <div class="cardHeader">
+                      <h2 class="card-title">
+                        <a href="/makers/<%= maker.slug %>"><%= maker.sortname %></a>
+                      </h2>
+                      <div class="card-subtitle">
+                        <div class="cardMeta">
+                          <!-- <div class="metaItem">
+                            <%= maker.kind %>
+                          </div>
+                          <div class="metaItem metaDivider metaLight">
+                            &bull;
+                          </div> -->
+                          <div class="metaItem">
+                            <% if(maker.links === 1){ %>
+                              <%= maker.links %> Link
+                            <% } else { %>
+                              <%= maker.links %> Links
+                            <% } %>
+                          </div>
+                          <% if(maker.sources > 0){ %>
+                            <div class="metaItem metaDivider metaLight">
+                              &bull;
+                            </div>
+                            <div class="metaItem">
+                              <% if(maker.sources === 1){ %>
+                                <%= maker.sources %> Source
+                              <% } else { %>
+                                <%= maker.sources %> Sources
+                              <% } %>
+                            </div>
+                          <% } %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="makerCardActions">
+                    <% maker.channels.forEach((channel) => { %>
+                      <div class="actionItem">
+                        <a class="actionButton externalLink" href="<%= channel.url %>" target="_blank"><i class="<%= channel.icon %>"></i><span><%= channel.name %></span></a>
+                      </div>
+                    <% }); %>
+                  </div>
+                </div>
+              </div>
+            <% } %>
+          <% }); %>
+        </div>
+        <% include ../partials/modules/links-list-noresults %>
+      </div>
+    </div>
+    <div class="row justify-content-lg-center">
+      <!-- <div class="col-lg-3"></div> -->
+      <div class="col-lg-9">
+        <nav class="pagination-wrap">
+          <ul class="pagination"></ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row justify-content-lg-center">
+    <div class="col-lg-12">
+      <% if(currentUser && currentUser.role === 'admin'){ %>
+        <div class="adminTool">
+          <a class="adminButton btn btn-outline-primary" href="/makers/new">New Maker</a>
+          <a class="adminButton btn btn-outline-secondary" href="/makers/prefetch">Update Prefetch</a>
+          <a class="adminButton btn btn-outline-secondary" href="/makers/downloadprefetch">Download Prefetch</a>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</div>
+<% include ../partials/footer %>

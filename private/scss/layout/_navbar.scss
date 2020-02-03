@@ -1,0 +1,125 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  border-bottom: 1px solid $gray-300;
+}
+
+.navbar-brand {
+  @include media-breakpoint-down(md) {
+    padding-left: 0.5rem;
+      padding-right: 1rem;
+  }
+}
+
+.navbar-collapse {
+  justify-content: space-between;
+}
+
+@include media-breakpoint-down(md) {
+  .offcanvas-collapse {
+    position: fixed;
+    top: 3.5rem;
+    // top: 0;
+    bottom: 0;
+      right: 100%;
+      width: 100%;
+      z-index: 90;
+      padding-top: 3.9rem;
+      padding-right: 1.5rem;
+      padding-left: 1.5rem;
+      overflow-y: auto;
+      visibility: hidden;
+      transition: visibility .2s ease, -webkit-transform .2s ease;
+      transition: transform .2s ease, visibility .2s ease;
+      transition: transform .2s ease, visibility .2s ease, -webkit-transform .2s ease;
+      .nav-item {
+        border-bottom: 1px solid $gray-300;
+      .nav-link, .navBarLogin {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.25rem 0;
+        width: 100%;
+        font-size: $h2-font-size;
+          font-weight: 700;
+        letter-spacing: -0.022em;
+        // line-height: 1.5;
+        line-height: 1;
+        i {
+          flex-basis: 7.5%;
+          margin-right: 0;
+          text-align: center;
+        }
+      }
+      .nav-link.homeLink {
+        justify-content: center;
+        padding-top: 0;
+      }
+
+      .nav-link.userLink {
+        display: flex;
+        span {
+          flex-basis: 7.5%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          // margin-right: 0.75rem;
+        }
+        .userPhoto {
+          height: 2rem;
+          line-height: 1;
+        }
+        font-feature-settings: 'case' 1;
+      }
+
+      .navBarLogin {
+        background: none;
+        border: none;
+        .navLarge {
+          display: none;
+        }
+      }
+      }
+    .dropdown {
+      display: none;
+    }
+    .navSecondary {
+      justify-content: space-between;
+      margin-top: 1rem;
+      .nav-item {
+        border: none;
+      }
+      .nav-link {
+        display: inline-block;
+        padding: .75rem 0;
+        font-size: $font-size-base;
+        font-weight: 500;
+        font-feature-settings: 'case' 1;
+        letter-spacing: normal;
+        i {
+          margin-right: 0.5rem;
+        }
+      }
+    }
+
+    }
+    .offcanvas-collapse.open {
+      visibility: visible;
+      -webkit-transform: translateX(100%);
+      transform: translateX(100%);
+      overflow-y: hidden;
+  }
+}
+
+.nav-item {
+  letter-spacing: normal;
+}
+
+.navExpanded {
+  @include media-breakpoint-up(lg){
+    display: none;
+  }
+}
+

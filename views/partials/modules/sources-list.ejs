@@ -1,0 +1,49 @@
+<% sources.forEach((source) => { %>
+	<div class="card indexCard">
+		<div class="card-body sourceCard">
+			<!-- List.js hack: Hidden ul + linkSchema virtuals -->
+			<ul class="hide">
+				<li class="sourceTitle"><%= source.sorttitle %></li>
+				<li class="sourceMakers"><%= source.allmakers %></li>
+				<li class="sourceCreated"><%= moment().diff(source.createdAt) %></li>
+			</ul>
+			<!--  -->
+			<div class="cardContent">
+				<div class="cardHeader">
+					<h2 class="card-title">
+						<a href="/sources/<%= source.slug %>"><%= source.title %></a>
+					</h2>
+					<div class="card-subtitle">
+						<div class="cardMeta">
+							<div class="cardMakers">
+							<% source.makers.forEach((maker) => { %>
+								<div class="metaItem metaItemMaker">
+									<a href="/makers/<%= maker.slug %>"><%= maker.sortname %></a>
+								</div>
+							<% }); %>
+							</div>
+							<% if(source.published){ %>
+								<div class="metaItem metaDivider">&bull;</div>
+								<div class="metaItem"><%= moment.utc(source.published).format("MMM YYYY") %></div>
+							<% } %>
+							<div class="metaItem metaDivider">&bull;</div>
+							<div class="metaItem">Source</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="sourceCardActions">
+				<div class="cardTags sourceTags">
+					<div class="tagItem badge badge-light createdAtItem">
+						<!-- <i class="far fa-calendar"></i> --><span><%= moment.utc(source.createdAt).fromNow() %></span>
+					</div>
+				</div>
+				<div class="actionItem">
+					<a class="actionButton externalLink" href="<%= source.url %>" target="_blank">
+						<span>View</span><i class="far fa-external-link-square"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+<% }); %>

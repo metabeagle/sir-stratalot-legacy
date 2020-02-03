@@ -1,0 +1,530 @@
+<% include ../partials/header %>
+<div class="row">
+  <div class="container">
+    <div class="row justify-content-lg-center">
+      <!-- <div class="col-lg-12"> -->
+      <div class="col-lg-9"> <!-- switch with other depending on columns -->
+        <div class="linkTitle userTitle">
+          <h1><%= user.name %></h1>
+          <!-- <div class="linkSubtitle"> -->
+            <!-- <div class="metaItem">Joined <%= moment.utc(user.createdAt).format("MMMM YYYY") %></div> -->
+            <!-- <div class="metaItem metaDivider">&bull;</div> -->
+            <!-- <div class="metaItem"><span class="metaWarning">Only you can see this page</span></div> -->
+          <!-- </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row justify-content-lg-center">
+    <!-- <div class="col-lg-3">
+      <div class="flexTool userInfo">
+        <div class="userInfoHeader">
+          <h3>My Info</h3>
+          <div class="userInfoDesc">When you sign in with Twitter, we save the following profile info to your Sir Stratalot account. You can always ask us to delete it. <a href="/privacy">View our privacy policy</a></div>
+        </div>
+        <div class="userInfoItem">
+          <h4>User ID</h4>
+          <div class="userInfoData"><%= user.twid %></div>
+        </div>
+        <div class="userInfoItem">
+          <h4>Name</h4>
+          <div class="userInfoData"><%= user.name %></div>
+        </div>
+        <div class="userInfoItem">
+          <h4>Username</h4>
+          <div class="userInfoData">@<%= user.username %></div>
+        </div> -->
+        <!-- <div class="userInfoItem">
+          <h4>Email</h4>
+          <% if(user.email) { %>
+            <div class="userInfoData"><%= user.email %></div>
+          <% } else { %>
+            <div class="userInfoData">—</div>
+          <% } %>
+        </div> -->
+<!--        <div class="userInfoItem">
+          <h4>Bio</h4>
+          <% if(user.description) { %>
+            <div class="userInfoData"><%= user.description %></div>
+          <% } else { %>
+            <div class="userInfoData">—</div>
+          <% } %>
+        </div>
+        <div class="userInfoItem">
+          <h4>URL</h4>
+          <% if(user.url) { %>
+            <div class="userInfoData"><%= user.url %></div>
+          <% } else { %>
+            <div class="userInfoData">—</div>
+          <% } %>
+        </div>
+      </div>
+    </div> -->
+    <div class="col-lg-9">
+      <div id="listjsContainer">
+        <div class="listTools userHeader">
+          <!-- <div class="listHeadline userHeadline"> -->
+            <ul class="nav nav-pills" id="pills-tab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="pills-upvotes-tab" data-toggle="pill" href="#pills-upvotes" role="tab" aria-controls="pills-upvotes" aria-selected="true">Upvotes<span id="listCount" class="linkCount"><%= user.likes.length %></span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="pills-nomvotes-tab" data-toggle="pill" href="#pills-nomvotes" role="tab" aria-controls="pills-nomvotes" aria-selected="false">Upvoted Nominees<span id="listCount" class="linkCount"><%= user.nomLikes.length %></span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="pills-noms-tab" data-toggle="pill" href="#pills-noms" role="tab" aria-controls="pills-noms" aria-selected="false" href="#">Nominations<span id="listCount" class="linkCount"><%= user.nominations.length %></span></a>
+              </li>
+            </ul>
+          <!-- </div> -->
+        </div>
+        <div class="tab-content" id="pills-tabContent">
+          <div class="tab-pane fade show active" id="pills-upvotes" role="tabpanel" aria-labelledby="pills-upvotes-tab">
+            <div class="userLike">
+            <% user.likes.forEach((link) => { %>
+              <div class="card indexCard">
+                <div class="card-body">
+                  
+                  <!-- List.js hack: Hidden ul + linkSchema virtuals -->
+                  <ul class="hide">
+                    <li class="linkTitle"><%= link.sorttitle %></li>
+                    <li class="linkKind"><%= link.kind %></li>
+                    <% if(link.subkind){ %>
+                      <li class="linkSubkind"><%= link.subkind %></li>
+                    <% } %>
+                    <li class="linkMakers"><%= link.allmakers %></li>
+                    <li class="linkTags"><%= link.alltags %></li>
+                    <% if(link.cost){ %>
+                      <li class="linkCost"><%= link.cost %></li>
+                    <% } %>
+                    <% if(link.location){ %>
+                      <li class="linkLoc"><%= link.location %></li>
+                    <% } %>
+                    <li class="linkCreated"><%= moment().diff(link.createdAt) %></li>
+                    <li class="linkLikes"><%= link.likes %></li>
+                  </ul>
+                  <!--  -->
+                  <!-- <% if(link.imgurl){ %>
+                    <div class="col-lg-1">
+                      <div class="linkImage">
+                        <a href="<%= link.url %>" target="_blank">
+                          <img class="img-fluid" src="<%= link.imgurl %>">
+                        </a>
+                      </div>
+                    </div>
+                  <% } %> -->
+                  <div class="cardContent">
+                    <!-- <div class="smallHead">
+                      <%= link.subkind %>
+                    </div> -->
+                    <div class="cardHeader">
+                      <h2 class="card-title">
+                        <a href="/links/<%= link.slug %>"><%= link.title %></a>
+                      </h2>
+                      <div class="card-subtitle">
+                        <div class="cardMeta">
+                          <div class="cardMakers">
+                            <% link.makers.forEach((maker) => { %>
+                              <div class="metaItem metaItemMaker">
+                                <a href="/makers/<%= maker.slug %>">
+                                  <%= maker.sortname %>
+                                </a>
+                              </div>
+                            <% }); %>
+                          </div>
+                          <% if(link.published){ %>
+                            <div class="metaItem metaDivider">
+                              &bull;
+                            </div>
+                            <% if(link.kind === 'Book'){ %>
+                              <div class="metaItem">
+                                <%= moment.utc(link.published).format("YYYY") %>
+                              </div>
+                            <% } else { %>
+                              <div class="metaItem">
+                                <%= moment.utc(link.published).format("MMM YYYY") %>
+                              </div>
+                            <% } %>
+                          <% } %>
+                          <% if(link.subkind){ %>
+                            <div class="metaItem metaDivider">
+                              &bull;
+                            </div>
+                            <div class="metaItem">
+                              <%= link.subkind %>
+                            </div>
+                          <% } else { %>
+                            <div class="metaItem">
+                              <%= link.kind %>
+                            </div>
+                          <% } %>
+                          <% if(link.cost){ %>
+                            <div class="metaItem metaDivider">
+                              &bull;
+                            </div>
+                            <div class="metaItem">
+                              <%= link.cost %>
+                            </div>
+                          <% } %>
+
+                          <% if(link.location){ %>
+                            <div class="metaItem metaDivider">
+                              &bull;
+                            </div>
+                            <div class="metaItem">
+                              <%= link.location %>
+                            </div>
+                          <% } %>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cardTags">
+                      <% link.tags.forEach((tag) => { %>
+                        <% if(tag.slug === 'support') { %>
+                          <a class="tagItem badge badge-light supportTag" href="/tags/<%= tag.slug %>"><%= tag.tag %></a>
+                        <% } else { %>
+                          <a class="tagItem badge badge-light" href="/tags/<%= tag.slug %>"><%= tag.tag %></a>
+                        <% } %>
+                      <% }); %>
+                      <div class="tagItem badge badge-light createdAtItem"><!-- <i class="far fa-calendar"></i> --><span><%= moment.utc(link.createdAt).fromNow() %></span></div>
+                        <% if(link.flags > 0){ %>
+                          <div class="tagItem badge badge-light deadItem">
+                            <i class="fas fa-skull-crossbones"></i><span><%= link.flags %></span>
+                          </div>
+                        <% } %>
+                    </div>
+                  </div>
+                  <div class="cardActions">
+                    <!-- Link id in hidden li for like button ajax post... bit of a hack -->
+                    <div class="linkId hide"><%= link.id %></div>
+                    <!-- Show different like button / modify class based on login state and past likes -->
+                    <% if(currentUser){ %>
+                      <div class="actionItem">
+                      <% if(currentUser.likes.map(String).includes(link.id) === true){ %>
+                        <button type="button" class="actionButton unlikeButton upvoteButton btn">
+                          <i class="fas fa-arrow-alt-up"></i>
+                          <span class="likeLabel">-1</span>
+                          <span class="likeCount"><%= link.likes %></span>
+                        </button>
+                      <% } else { %>
+                        <button type="button" class="actionButton likeButton upvoteButton btn">
+                          <i class="fas fa-arrow-alt-up"></i>
+                          <span class="likeLabel">+1</span>
+                          <span class="likeCount"><%= link.likes %></span>
+                        </button>
+                      <% } %>
+                      </div>
+                    <% } else { %>
+                      <div class="actionItem">
+                        <button type="button" class="actionButton loginButton upvoteButton btn" data-toggle="modal" data-target="#loginModal">
+                          <i class="fas fa-arrow-alt-up"></i>
+                          <span class="likeLabel">+1</span>
+                          <span class="likeCount"><%= link.likes %></span>
+                        </button>
+                      </div>
+                    <% } %>
+                    <div class="actionItem">
+                      <% if(link.subkind === 'Book'){ %>
+                        <a class="actionButton externalLink btn" href="<%= link.url %>?tag=sirstratalot-20" target="_blank">
+                          <span>Amazon</span><i class="far fa-external-link-square"></i><!-- <i class="fab fa-amazon"></i> --> 
+                        </a>
+                      <% } else { %>
+              <!--          <a class="actionButton externalLink btn" href="<%= link.url %>" target="_blank">
+                          <i class="far fa-external-link-square-alt"></i>
+                        </a> -->
+                        <a class="actionButton externalLink btn" href="<%= link.url %>" target="_blank">
+                          <% if(link.subkind === 'Book' || link.amazon === true) { %>
+                            <span>Amazon</span>
+                          <% } else if(link.subkind === 'Article') { %>
+                            <span>Read</span><!-- <i class="far fa-newspaper"></i> -->
+                          <% } else if(link.subkind === 'Blog') { %>
+                            <span>Read</span><!-- <i class="fas fa-rss"></i> --> 
+                          <% } else if(link.subkind === 'Book') { %>
+                            <span>Amazon</span><!-- <i class="fab fa-amazon"></i>  -->
+                          <% } else if(link.subkind === 'Case Study') { %>
+                            <span>View</span>
+                          <% } else if(link.subkind === 'Community') { %>
+                            <span>Join</span><!-- <i class="far fa-comments-alt"></i>  -->
+                          <% } else if(link.subkind === 'Education') { %>
+                            <span>Go</span><!-- <i class="far fa-lightbulb"></i> -->
+                          <% } else if(link.subkind === 'Meta') { %>
+                            <span>View</span><!-- <i class="far fa-clone"></i> -->
+                          <% } else if(link.subkind === 'Newsletter') { %>
+                            <span>Subscribe</span><!-- <i class="far fa-envelope"></i>  -->
+                          <% } else if(link.subkind === 'Opportunity') { %>
+                            <span>Go</span><!-- <i class="far fa-award"></i>  -->
+                          <% } else if(link.subkind === 'Podcast') { %>
+                            <span>Listen</span><!-- <i class="far fa-podcast"></i>  -->
+                          <% } else if(link.subkind === 'Presentation') { %>
+                            <span>View</span><!-- <i class="far fa-presentation"></i>  -->
+                          <% } else if(link.subkind === 'Reference') { %>
+                            <span>View</span><!-- <i class="far fa-archive"></i> -->
+                          <% } else if(link.subkind === 'Report') { %>
+                            <span>Read</span><!-- <i class="far fa-file-chart-line"></i> -->
+                          <% } else if(link.subkind === 'Research') { %>
+                            <span>Go</span><!-- <i class="fas fa-chart-bar"></i> -->
+                          <% } else if(link.subkind === 'Research Tool') { %>
+                            <span>Go</span><!-- <i class="far fa-microscope"></i> -->
+                          <% } else if(link.subkind === 'Service') { %>
+                            <span>Go</span><!-- <i class="far fa-cog"></i> -->
+                          <% } else if(link.subkind === 'Toolkit') { %>
+                            <span>Go</span><!-- <i class="far fa-toolbox"></i> -->
+                          <% } else if(link.subkind === 'Utility') { %>
+                            <span>Go</span><!-- <i class="far fa-pencil-paintbrush"></i> -->
+                          <% } else if(link.subkind === 'Video') { %>
+                            <span>Watch</span><!-- <i class="far fa-play-circle"></i> -->
+                          <% } else { %>
+                            <span>View</span><!-- <i class="far fa-external-link-square"></i>  -->
+                          <% } %>
+                          <i class="far fa-external-link-square"></i>
+                        </a>
+                      <% } %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% }); %>
+            <% if(user.likes.length === 0){ %>
+              <div id="zeroLikes" class="card indexCard userIndexCard">
+                <div class="card-body">
+                  <div class="cardContent">
+                    <h2 class="card-title">You haven’t upvoted any links</h2>
+                    <div class="card-subtitle">
+                      But when you do, they’ll show up here. Upvoting links that you've found useful helps your fellow planners and strategists find the best stuff.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% } %>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="pills-nomvotes" role="tabpanel" aria-labelledby="pills-nomvotes-tab">
+            <div class="userNomLike">
+              <% user.nomLikes.forEach((nom) => { %>
+                <div class="card indexCard nomCard">
+                  <div class="card-body">
+                    <!-- List.js hack: Hidden ul + nomineeSchema virtuals -->
+                    <ul class="hide">
+                      <li class="nomTitle"><%= nom.sorttitle %></li>
+                      <li class="nomKind"><%= nom.kind %></li>
+                      <li class="nomSubkind"><%= nom.subkind %></li>
+                      <li class="nomMakers"><%= nom.allmakers %></li>
+                      <li class="nomCreated"><%= moment().diff(nom.createdAt) %></li>
+                      <li class="nomLikes"><%= nom.likes %></li>
+                    </ul>
+                    <!--  -->
+                    <div class="cardContent">
+                      <div class="cardHeader">
+                        <h2 class="card-title nomTitle">
+                          <%= nom.title %>
+                        </h2>
+                        <div class="card-subtitle">
+                          <div class="cardMeta">
+                            <% if(nom.makers){ %>
+                              <div class="cardMakers">
+                                <% nom.makers.forEach((maker) => { %>
+                                  <div class="metaItem metaItemMaker">
+                                    <%= maker %>
+                                  </div>
+                                <% }); %>
+                              </div>
+                              <div class="metaItem metaDivider metaLight">
+                                &bull;
+                              </div>
+                            <% } %>
+                            <% if(nom.subkind){ %>
+                              <div class="metaItem"><%= nom.subkind %></div>
+                            <% } else { %>
+                              <div class="metaItem"><%= nom.kind %></div>
+                            <% } %>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="nomDescription"><%= nom.description %></div>
+                      <div class="cardTags">
+                        <div class="tagItem badge badge-light createdAtItem"><!-- <i class="far fa-calendar"></i> --><%= moment.utc(nom.createdAt).fromNow() %> via<a class="nomUsername" href="https://twitter.com/<%= nom.user.username %>" target="_blank">@<%= nom.user.username %></a></div>
+                        <!-- <div class="tagItem badge badge-light createdAtItem"><i class="far fa-calendar"></i><%= moment.utc(nom.createdAt).fromNow() %></div>
+                        <div class="tagItem badge badge-light createdAtItem">via <a class href="https://twitter.com/<%= nom.user.username %>" target="_blank">@<%= nom.user.username %></a></div> -->
+                      </div>
+                    </div>
+                    <div class="cardActions">
+                      <!-- Nominee id in hidden li for like button ajax post... bit of a hack -->
+                      <div class="nomId hide"><%= nom.id %></div>
+
+                      <!-- Show different like button / modify class based on login state and past likes -->
+                      <% if(currentUser){ %>
+
+                        <div class="actionItem">
+                        <% if(currentUser.id === nom.user.id){ %>
+                          <button type="button" class="actionButton upvoteButton disabledLike disabled btn">
+                            <i class="fas fa-arrow-alt-up"></i>
+                            <span class="likeCount"><%= nom.likes %></span>
+                          </button>
+                        <% } else if(currentUser.nomLikes.map(String).includes(nom.id) === true) { %>
+                          <button type="button" class="actionButton upvoteButton unlikeButton btn">
+                            <i class="fas fa-arrow-alt-up"></i>
+                            <span class="likeLabel">-1</span>
+                            <span class="likeCount"><%= nom.likes %></span>
+                          </button>
+                        <% } else { %>
+                          <button type="button" class="actionButton upvoteButton likeButton btn">
+                            <i class="fas fa-arrow-alt-up"></i>
+                            <span class="likeLabel">+1</span>
+                          </button>
+                        <% } %>
+                        </div>
+
+                      <% } else { %>
+
+                        <div class="actionItem">
+                          <button type="button" class="actionButton upvoteButton loginButton btn" data-toggle="modal" data-target="#loginModal">
+                            <i class="fas fa-arrow-alt-up"></i>
+                            <span class="likeCount"><%= nom.likes %></span>
+                            <span class="likeLabel">+1</span>
+                          </button>
+                        </div>
+
+                      <% } %>
+
+                      <div class="actionItem">
+                        <a class="actionButton externalLink btn" href="<%= nom.url %>" target="_blank">
+                          <span>View</span><i class="far fa-external-link-square"></i> 
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% }); %>
+            </div>
+            <% if(user.nomLikes.length === 0){ %>
+              <div id="zeroNomLikes" class="card indexCard userIndexCard">
+                <div class="card-body">
+                  <div class="cardContent">
+                    <h2 class="card-title">No nominees upvoted</h2>
+                    <div class="card-subtitle">
+                      <a href="/nominees">Check out the nominees</a> and vote for ’em if you think they deserve a permanent spot on the site.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% } %>
+          </div>
+          <div class="tab-pane fade" id="pills-noms" role="tabpanel" aria-labelledby="pills-noms-tab">
+            <div class="nomListjs">
+              <% user.nominations.forEach((nom) => { %>
+                <div class="card indexCard nomCard">
+                  <div class="card-body">
+                    <!-- List.js hack: Hidden ul + nomineeSchema virtuals -->
+                    <ul class="hide">
+                      <li class="nomTitle"><%= nom.sorttitle %></li>
+                      <li class="nomKind"><%= nom.kind %></li>
+                      <li class="nomSubkind"><%= nom.subkind %></li>
+                      <li class="nomMakers"><%= nom.allmakers %></li>
+                      <li class="nomCreated"><%= moment().diff(nom.createdAt) %></li>
+                      <li class="nomLikes"><%= nom.likes %></li>
+                    </ul>
+                    <!--  -->
+                    <div class="cardContent">
+                      <div class="cardHeader">
+                        <h2 class="card-title nomTitle">
+                          <%= nom.title %>
+                        </h2>
+                        <div class="card-subtitle">
+                          <div class="cardMeta">
+                            <% if(nom.makers){ %>
+                              <div class="cardMakers">
+                                <% nom.makers.forEach((maker) => { %>
+                                  <div class="metaItem metaItemMaker">
+                                    <%= maker %>
+                                  </div>
+                                <% }); %>
+                              </div>
+                              <div class="metaItem metaDivider metaLight">
+                                &bull;
+                              </div>
+                            <% } %>
+                            <% if(nom.subkind){ %>
+                              <div class="metaItem"><%= nom.subkind %></div>
+                            <% } else { %>
+                              <div class="metaItem"><%= nom.kind %></div>
+                            <% } %>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="nomDescription"><%= nom.description %></div>
+                      <div class="cardTags">
+                        <div class="tagItem badge badge-light createdAtItem"><!-- <i class="far fa-calendar"></i> --><%= moment.utc(nom.createdAt).fromNow() %> via <!-- <span class="nomUser"><%= nom.user.name %></span>  --><a class="nomUsername" href="https://twitter.com/<%= nom.user.username %>" target="_blank">@<%= nom.user.username %></a></div>
+                        <!-- <div class="tagItem badge badge-light createdAtItem"><i class="far fa-calendar"></i><%= moment.utc(nom.createdAt).fromNow() %></div>
+                        <div class="tagItem badge badge-light createdAtItem">via <a class href="https://twitter.com/<%= nom.user.username %>" target="_blank">@<%= nom.user.username %></a></div> -->
+                      </div>
+                    </div>
+                    <div class="cardActions">
+                      <!-- Nominee id in hidden li for like button ajax post... bit of a hack -->
+                      <div class="nomId hide"><%= nom.id %></div>
+
+                      <!-- Show different like button / modify class based on login state and past likes -->
+                      <% if(currentUser){ %>
+
+                        <div class="actionItem">
+                        <% if(currentUser.id === nom.user.id){ %>
+                          <button type="button" class="actionButton upvoteButton disabledLike disabled btn">
+                            <i class="fas fa-arrow-alt-up"></i>
+                            <span class="likeCount"><%= nom.likes %></span>
+                          </button>
+                        <% } else if(currentUser.nomLikes.map(String).includes(nom.id) === true) { %>
+                          <button type="button" class="actionButton upvoteButton unlikeButton btn">
+                            <i class="fas fa-arrow-alt-up"></i>
+                            <span class="likeLabel">-1</span>
+                            <span class="likeCount"><%= nom.likes %></span>
+                          </button>
+                        <% } else { %>
+                          <button type="button" class="actionButton upvoteButton likeButton btn">
+                            <i class="fas fa-arrow-alt-up"></i>
+                            <span class="likeLabel">+1</span>
+                          </button>
+                        <% } %>
+                        </div>
+
+                      <% } else { %>
+
+                        <div class="actionItem">
+                          <button type="button" class="actionButton upvoteButton loginButton btn" data-toggle="modal" data-target="#loginModal">
+                            <i class="fas fa-arrow-alt-up"></i>
+                            <span class="likeCount"><%= nom.likes %></span>
+                            <span class="likeLabel">+1</span>
+                          </button>
+                        </div>
+
+                      <% } %>
+
+                      <div class="actionItem">
+                        <a class="actionButton externalLink btn" href="<%= nom.url %>" target="_blank">
+                          <span>View</span><i class="far fa-external-link-square"></i> 
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% }); %>
+            </div>
+            <% if(user.nominations.length === 0){ %>
+              <div id="zeroNoms" class="card indexCard userIndexCard">
+                <div class="card-body">
+                  <div class="cardContent">
+                    <h2 class="card-title">No nominations</h2>
+                    <div class="card-subtitle">
+                      But if you’ve got something in mind you can <a href="/nominees/new">submit one right here</a>.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% } %>
+          </div>  
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<% include ../partials/footer %>

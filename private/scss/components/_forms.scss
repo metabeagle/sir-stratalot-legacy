@@ -1,0 +1,40 @@
+.form-control {
+	padding: 0.5rem 0.75rem;
+}
+
+.form-control:active, .form-control:focus, .form-control:active:focus {
+	outline: none;
+}
+
+.formContainer {
+	padding: ($spacer * 1.25);
+	.card-title {
+		font-weight: 600;
+	}
+	@include media-breakpoint-down(md){
+		margin-left: ($spacer / 2);
+		margin-right: ($spacer / 2);
+	}
+	h2 {
+		font-size: $h3-font-size;
+	}
+	label {
+		font-size: $font-size-sm;
+	}
+	// .btn-block {
+	// 	padding: 1rem 1.25rem;
+	// }
+}
+
+.select2 {
+	.is-invalid {
+		border-color: $danger;
+		padding-right: ($spacer * 2.25);
+		background-repeat: no-repeat;
+		// background-position-x: right calc($spacer * .5625);
+		// background-position-y: center;
+		background-position: center right calc(2.25rem / 4);
+		background-size: calc(2.25rem / 2) calc(2.25rem / 2);
+		background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23dc3545' viewBox='-2 -2 7 7'%3e%3cpath stroke='%23d9534f' d='M0 0l3 3m0-3L0 3'/%3e%3ccircle r='.5'/%3e%3ccircle cx='3' r='.5'/%3e%3ccircle cy='3' r='.5'/%3e%3ccircle cx='3' cy='3' r='.5'/%3e%3c/svg%3E");
+	}
+}

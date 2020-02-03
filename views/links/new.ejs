@@ -1,0 +1,150 @@
+<% include ../partials/header %>
+<div class="row justify-content-lg-center">
+  <div class="col-lg-9">
+    <div class="jumbotron formTitle text-center">
+      <h1>New Link</h1>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row justify-content-lg-center">
+    <div class="col-lg-9">
+      <div class="formContainer">
+        <form action="/links" method="POST">
+          <div class="form-group text-center">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-outline-primary active" for="linkBook">
+                  <input type="radio" name="link[kind]" id="linkBook" value="Book" checked>
+                  Book
+                </label>
+              <label class="btn btn-outline-primary" for="linkSingle">
+                <input type="radio" name="link[kind]" id="linkSingle" value="Single">
+                  Single
+                </label>
+              <label class="btn btn-outline-primary" for="linkFeed">
+                <input type="radio" name="link[kind]" id="linkFeed" value="Feed">
+                  Feed
+                </label>
+                <label class="btn btn-outline-primary" for="linkResource">
+                <input type="radio" name="link[kind]" id="linkResource" value="Resource">
+                  Resource
+                </label>
+              <label class="btn btn-outline-primary" for="linkTool">
+                <input type="radio" name="link[kind]" id="linkTool" value="Tool">
+                  Tool
+                </label>
+                <label class="btn btn-outline-primary" for="linkTool">
+                <input type="radio" name="link[kind]" id="linkExtra" value="Extracurricular">
+                  Extracurricular
+                </label>
+            </div>
+          </div>
+          <div class="singleField form-group hide">
+            <select class="custom-select" name="link[subkind]">
+              <option value="" disabled selected>Type</option>
+              <option value="Article">Article</option>
+              <option value="Presentation">Presentation</option>
+              <option value="Report">Report</option>
+              <option value="Video">Video</option>
+            </select>
+          </div>
+          <div class="feedField form-group hide">
+            <select class="custom-select" name="link[subkind]">
+              <option value="" disabled selected>Type</option>
+              <option value="Blog">Blog</option>
+              <option value="Newsletter">Newsletter</option>
+              <option value="Podcast">Podcast</option>
+              <option value="YouTube">YouTube</option>
+            </select>
+          </div>
+          <div class="resourceField form-group hide">
+            <select class="custom-select" name="link[subkind]">
+              <option value="" disabled selected>Type</option>
+              <option value="Case Study">Case Study</option>
+              <option value="Meta">Meta</option>
+              <option value="Reference">Reference</option>
+              <option value="Research">Research</option>
+            </select>
+          </div>
+          <div class="toolField form-group hide">
+            <select class="custom-select" name="link[subkind]">
+              <option value="" disabled selected>Type</option>
+              <option value="Research Tool">Research Tool</option>
+              <option value="Service">Service</option>
+              <option value="Toolkit">Toolkit</option>
+              <option value="Utility">Utility</option>
+            </select>
+          </div>
+          <div class="extraField form-group hide">
+            <select class="custom-select" name="link[subkind]">
+              <option value="" disabled selected>Type</option>
+              <option value="Community">Community</option>
+              <option value="Education">Education</option>
+              <option value="Opportunity">Opportunity</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="text" name="link[title]" placeholder="Title"> 
+          </div>
+          <div class="form-group">
+            <select id="makerSelect" type-="text" name="link[makers]" style="width: 100%" multiple></select>
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" name="link[description]" placeholder="Description" rows="4"></textarea>
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="text" name="link[url]" placeholder="URL">
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="text" name="link[imgurl]" placeholder="Image URL">
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="text" name="link[logourl]" placeholder="Logo URL">
+          </div>
+          <div class="singleField form-group">
+            <input class="form-control" type="text" name="link[embedurl]" placeholder="Embed URL (if relevant)">
+          </div>
+          <div class="form-group">
+            <select id="tagSelect" type-="text" name="link[tags]" style="width: 100%" multiple></select>
+          </div>
+          <div class="singleField form-group hide">
+            <input class="form-control" type="date" name="link[published]">
+          </div>
+          <div class="bookField form-group">
+            <input class="form-control" type="date" name="link[published]">
+          </div>
+          <div class="bookField form-group">
+            <input class="form-control" type="text" name="link[asin]" placeholder="ASIN">
+          </div>
+          <div class="bookField form-group">
+            <input class="form-control" type="text" name="link[isbn]" placeholder="ISBN">
+          </div>
+          <div class="resourceField form-group hide">
+            <input class="form-control" type="date" name="link[published]">
+          </div>
+          <div class="toolField form-group hide">
+            <input class="form-control" type="text" name="link[cost]" placeholder="Cost (Free, Free Trial, Paid...)">
+          </div>
+          <div class="extraField form-group hide">
+            <input class="form-control" type="text" name="link[location]" placeholder="Location (Facebook, Slack, NYC, London, Global...)">
+          </div>
+          <div class="form-group">
+            <select id="sourceSelect" type-="text" name="link[sources]" style="width: 100%" multiple></select>
+          </div>
+          <div class="form-group form-row">
+            <div class="col">
+              <input class="form-control" type="text" name="link[attribution][label]" placeholder="Attribution">
+            </div>
+            <div class="col">
+              <input class="form-control" type="text" name="link[attribution][url]" placeholder="URL">
+            </div>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<% include ../partials/footer %>

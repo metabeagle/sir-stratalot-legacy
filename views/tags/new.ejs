@@ -1,0 +1,25 @@
+<% include ../partials/header %>
+<div class="row justify-content-lg-center">
+	<div class="col-lg-9">
+		<div class="jumbotron formTitle text-center">
+			<h1>New Tag</h1>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row justify-content-lg-center">
+		<div class="col-lg-9">
+			<div class="formContainer">
+				<form action="/tags" method="POST">
+					<div class="form-group">
+						<input class="form-control" type="text" name="tag[tag]" placeholder="Tag">
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary btn-block">Save</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<% include ../partials/footer %>

@@ -1,0 +1,74 @@
+<nav class="navbar navbar-expand-lg navbar-light"> 
+	<div class="container">
+		<a class="navbar-brand" href="/">⚔️</a>
+		<button class="navbar-toggler hamburger hamburger--slider-r" type="button" data-toggle="offcanvas">
+			<span class="hamburger-box">
+		    	<span class="hamburger-inner"></span>
+		  	</span>
+		</button>
+		<div class="navbar-collapse offcanvas-collapse">
+    		<ul class="navbar-nav">
+    			<li class="nav-item navExpanded">
+        			<a class="nav-link homeLink" href="/">🏰</a>
+      			</li>
+      			<li class="nav-item">
+        			<a class="nav-link linksLink" href="/links">Links<i class="fas fa-list-ul navExpanded"></i></a>
+      			</li>
+      			<li class="nav-item">
+        			<a class="nav-link tagsLink" href="/tags">Tags<i class="fas fa-tag navExpanded"></i></a>
+      			</li>
+    			<li class="nav-item">
+        			<a class="nav-link makersLink" href="/makers">Makers<i class="fas fa-feather-alt makerIcon navExpanded"></i></a>
+      			</li>
+	      		<% if(currentUser && currentUser.role === 'admin'){ %>
+	      			<li class="nav-item">
+	        			<a class="nav-link booksLink" href="/bookshelf">Bookshelf<i class="fas fa-book-open navExpanded"></i></a>
+	      			</li>
+	      			<li class="nav-item">
+	        			<a class="nav-link sourcesLink" href="/sources">Sources<i class="fas fa-star-of-life navExpanded"></i></a>
+	      			</li>
+	      		<% } %>
+      			<li class="nav-item">
+        			<a class="nav-link nomineesLink" href="/nominees">Nominees<i class="fas fa-sparkles navExpanded"></i></a>
+      			</li>
+      		</ul>
+      		<ul class="navbar-nav">
+    		<% if (!currentUser) { %>
+	    		<li class="nav-item">
+	    			<a class="twitterLoginButton navBarLogin btn-sm btn" href="/auth/twitter">
+						<i class="fab fa-twitter navLarge"></i><span>Sign in with Twitter</span><i class="fab fa-twitter navExpanded"></i></a>
+	    		</li>
+	    	<% } else { %>
+	    		<li class="nav-item dropdown">
+	    			<a class="nav-link dropdown-toggle userDropdown" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	    				<img class="userPhoto align-self-center" src="<%= currentUser.photo %>">
+			        </a>
+		        	<div class="dropdown-menu dropdown-menu-right userDropdownMenu" aria-labelledby="navbarDropdown">
+		        		<a class="dropdown-item" href="/users/me">My Shit</a>
+		        		<a class="dropdown-item" href="/nominees/new">Submit a Link</a>
+		        		<div class="dropdown-divider"></div>
+		        		<a class="dropdown-item" href="/auth/logout">Sign Out</a>
+		        	</div>
+	    		</li>
+	    		<li class="nav-item navExpanded">
+	    			<a class="nav-link userLink" href="/users/me">@<%= currentUser.username %><span><img class="userPhoto align-self-center" src="<%= currentUser.photo %>"></span></a>
+	    		</li>
+	    		<li class="nav-item navExpanded">
+	    			<a class="nav-link signoutLink" href="/auth/logout">Sign Out<i class="fas fa-sign-out"></i></a>
+	    		</li>
+	    	<% } %>
+	    	</ul>
+	    	<ul class="navbar-nav navExpanded navSecondary">
+    			<li class="nav-item">
+        			<a class="nav-link" href="/about"><i class="fas fa-question-circle"></i>About</a>
+      			</li>
+      			<li class="nav-item">
+        			<a class="nav-link" href="/contribute"><i class="fas fa-heart"></i>Contribute</a>
+      			</li>
+      			<li class="nav-item">
+        			<a class="nav-link" target="_blank" href="https://twitter.com/sirstratalot"><i class="fab fa-twitter"></i>@sirstratalot</a>
+      			</li>
+      		</ul>
+  		</div>
+  	</div>
+</nav>

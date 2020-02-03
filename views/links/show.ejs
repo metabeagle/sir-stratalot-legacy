@@ -1,0 +1,243 @@
+<% include ../partials/header %>
+<% include ../partials/modules/login-modal %>
+<div class="row">
+  <div class="container">
+    <div class="row justify-content-lg-center">
+      <div class="col-lg-9">
+        <% if(link.kind === 'Book'){ %>
+          <div class="bookImage">
+            <img class="img-fluid" border="0" src="//ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=US&ASIN=<% if(link.asin !== ''){ %><%= link.asin %><% } else { %><%= link.isbn %><% } %>&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_LL250_&tag=sirstratalot-20" ><img src="//ir-na.amazon-adsystem.com/e/ir?t=sirstratalot-20&l=am2&o=1&a=<% if(link.asin !== ''){ %><%= link.asin %><% } else { %><%= link.isbn %><% } %>" width="1" height="1" border="0" alt="<%= link.title %>" style="border:none !important; margin:0px !important;" />
+          </div>
+<!--           <div class="linkTitle">
+            <h1 class="imageTitle balance-text"><%= link.title %></h1> -->
+        <% } else if(link.subkind === 'Video' && link.embedurl !== ''){ %>
+          <div class="linkImage">
+            <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="<%= link.embedurl %>" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="accelerometer; autoplay; encrypted-media; fullscreen" allowfullscreen></iframe></div>
+          </div>
+        <% } else if(link.imgurl !== ''){ %>
+          <div class="linkImage"><img class="img-fluid" src="<%= link.imgurl %>" /></div>
+<!--           <div class="linkTitle">
+            <h1 class="imageTitle balance-text"><%= link.title %></h1> -->
+        <% } else { %>
+          <div class="headerDivider"></div>
+<!--           <div class="linkTitle">
+            <h1 class="balance-text"><%= link.title %></h1> -->
+        <% } %>
+        <div class="linkTitle">
+          <h1 class="balance-text"><%= link.title %></h1>
+          <div class="linkSubtitle">
+            <div class="linkMakers">
+              <% link.makers.forEach((maker) => { %>
+                <div class="metaItem metaItemMaker">
+                  <a href="/makers/<%= maker.slug %>"><%= maker.sortname %></a>
+                </div>
+              <% }); %>
+            </div>
+            <% if(link.published){ %>
+              <div class="metaItem metaDivider">&bull;</div>
+              <% if(link.kind === 'Book'){ %>
+                <div class="metaItem"><%= moment.utc(link.published).format("YYYY") %></div>
+              <% } else { %>
+                <div class="metaItem"><%= moment.utc(link.published).format("MMMM YYYY") %></div>
+              <% } %>
+            <% } %>
+            <% if(link.subkind){ %>
+              <div class="metaItem metaDivider metaLight">&bull;</div>
+              <div class="metaItem">
+                <%= link.subkind %>
+              </div>
+            <% } else { %>
+              <div class="metaItem">
+                <%= link.kind %>
+              </div>
+            <% } %>
+            <% if(link.cost){ %>
+              <div class="metaItem metaDivider">
+                &bull;
+              </div>
+              <div class="metaItem">
+                <%= link.cost %>
+              </div>
+            <% } %>
+            <% if(link.location){ %>
+              <div class="metaItem metaDivider">
+                &bull;
+              </div>
+              <div class="metaItem">
+                <%= link.location %>
+              </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row justify-content-lg-center showContainer">
+<!--     <% if(link.kind === 'Book'){ %>
+        <div class="col-lg-3">
+          <div class="bookImage">
+            <img class="img-fluid" border="0" src="//ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=US&ASIN=<% if(link.asin !== ''){ %><%= link.asin %><% } else { %><%= link.isbn %><% } %>&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_LL250_&tag=sirstratalot-20" ><img src="//ir-na.amazon-adsystem.com/e/ir?t=sirstratalot-20&l=am2&o=1&a=<% if(link.asin !== ''){ %><%= link.asin %><% } else { %><%= link.isbn %><% } %>" width="1" height="1" border="0" alt="<%= link.title %>" style="border:none !important; margin:0px !important;" />
+          </div>
+        </div>
+      <% } %> -->
+    <div class="col-lg-7">
+      <div class="card showCard">
+        <div class="card-body">
+          <div class="showDescription"><%= link.description %></div>
+          <div class="showSecondary">
+            <div class="showSecondaryHead"><i class="far fa-tag"></i>Tags</div>
+            <div class="showTags">
+              <!-- <div class="showSecondaryHead">Tags</div> -->
+              <% link.tags.forEach((tag) => { %>
+                <% if(tag.slug === 'support') { %>
+                  <a class="tagItem badge badge-light supportTag" href="/tags/<%= tag.slug %>"><%= tag.tag %></a>
+                <% } else { %>
+                  <a class="tagItem badge badge-light" href="/tags/<%= tag.slug %>"><%= tag.tag %></a>
+                <% } %>
+              <% }); %>
+            </div>
+          </div>
+          <div class="showSecondary">
+            <div class="showSecondaryHead"><i class="far fa-star-of-life"></i>Sources</div>
+            <div class="showSources">
+            <% if(link.sources.length > 0){ %>
+              <% link.sources.forEach((source) => { %>
+                <div class="sourceItem">
+                  <a href="/sources/<%= source.slug %>"><%= source.title %></a>
+                </div>
+              <% }); %>
+            <% } %>
+            <% if(link.attribution && link.attribution.url !==''){ %>
+              <div class="attributionItem">via <a href="<%= link.attribution.url %>" target="_blank"><%= link.attribution.label %></a></div>
+            <% } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2">
+      <div class="flexTool showTool">
+        <!-- Link id in hidden li for like button ajax post... bit of a hack -->
+        <div class="linkId hide"><%= link.id %></div>
+        <!-- Show different like button / modify class based on login state and past likes -->
+        <% if(currentUser){ %>
+          <% if(currentUser.likes.map(String).includes(link.id) === true){ %>
+            <button type="button" class="actionButton unlikeButton upvoteButton btn">
+              <i class="fas fa-arrow-alt-up"></i>
+              <span class="likeLabel">-1</span>
+              <% if(link.likes === 1){ %>
+                <span class="likeCount"><%= link.likes %></span>
+              <% } else { %>
+                <span class="likeCount"><%= link.likes %></span>  
+              <% } %>
+            </button>
+          <% } else { %>
+            <button type="button" class="actionButton likeButton upvoteButton btn">
+              <i class="fas fa-arrow-alt-up"></i>
+              <span class="likeLabel">+1</span>
+              <% if(link.likes === 1){ %>
+                <span class="likeCount"><%= link.likes %></span>
+              <% } else { %>
+                <span class="likeCount"><%= link.likes %></span>
+              <% } %>
+            </button>
+          <% } %>
+        <% } else { %>
+          <button type="button" class="actionButton loginButton upvoteButton btn" data-toggle="modal" data-target="#loginModal">
+            <i class="fas fa-arrow-alt-up"></i>
+            <span class="likeLabel">+1</span>
+            <% if(link.likes === 1){ %>
+              <span class="likeCount"><span class="replace"><%= link.likes %></span></span>
+            <% } else { %>
+              <span class="likeCount"><%= link.likes %></span>  
+            <% } %>
+          </button>
+        <% } %>
+        <a class="actionButton externalLink btn" href="<%= link.url %>" target="_blank">
+          <% if(link.subkind === 'Book' || link.amazon === true) { %>
+            <span>Get it on Amazon</span>
+          <% } else { %>
+            <% if(link.subkind === 'Article') { %>
+              <span>Read</span><!-- <i class="far fa-newspaper"></i> -->
+            <% } else if(link.subkind === 'Blog') { %>
+              <span>Read</span><!-- <i class="fas fa-rss"></i> -->
+            <% } else if(link.subkind === 'Case Study') { %>
+              <span>View</span>
+            <% } else if(link.subkind === 'Community') { %>
+              <span>Join</span><!-- <i class="far fa-comments-alt"></i> -->
+            <% } else if(link.subkind === 'Education') { %>
+              <span>Go</span><!-- <i class="far fa-lightbulb"></i> -->
+            <% } else if(link.subkind === 'Meta') { %>
+              <span>View</span><!-- <i class="far fa-clone"></i> -->
+            <% } else if(link.subkind === 'Newsletter') { %>
+              <span>Subscribe</span><!-- <i class="far fa-envelope"></i> -->
+            <% } else if(link.subkind === 'Opportunity') { %>
+              <span>Go</span><!-- <i class="far fa-award"></i> -->
+            <% } else if(link.subkind === 'Podcast') { %>
+              <span>Listen</span><!-- <i class="far fa-podcast"></i> -->
+            <% } else if(link.subkind === 'Presentation') { %>
+              <span>View</span><!-- <i class="far fa-presentation"></i> --> 
+            <% } else if(link.subkind === 'Reference') { %>
+              <span>View</span><!-- <i class="far fa-archive"></i> -->
+            <% } else if(link.subkind === 'Report') { %>
+              <span>Read</span><!-- <i class="far fa-file-chart-line"></i> -->
+            <% } else if(link.subkind === 'Research') { %>
+              <span>Go</span><!-- <i class="fas fa-chart-bar"></i> -->
+            <% } else if(link.subkind === 'Research Tool') { %>
+              <span>Go</span><!-- <i class="far fa-microscope"></i> -->
+            <% } else if(link.subkind === 'Service') { %>
+              <span>Go</span><!-- <i class="far fa-cog"></i> -->
+            <% } else if(link.subkind === 'Toolkit') { %>
+              <span>Go</span><!-- <i class="far fa-toolbox"></i> -->
+            <% } else if(link.subkind === 'Utility') { %>
+              <span>Go</span><!-- <i class="far fa-pencil-paintbrush"></i> -->
+            <% } else if(link.subkind === 'Video') { %>
+              <span>Watch</span><!-- <i class="far fa-play-circle"></i> -->
+            <% } else { %>
+              <span>View</span><!-- <i class="far fa-external-link-square"></i> --> 
+            <% } %>
+            <i class="far fa-external-link-square"></i>
+        <% } %>
+        </a>
+        <div class="flagTool">
+          <% if(link.flags >= 1){ %>
+            <i class="fas fa-skull-crossbones deadItem"></i>
+            <span class="flagCount deadItem"><%= link.flags %></span>
+          <% } else { %>
+            <i class="fas fa-skull-crossbones"></i>
+            <span class="flagCount"><%= link.flags %></span>
+          <% } %>
+        <% if(currentUser){ %>
+          <% if(currentUser.flags.map(String).includes(link.id) === true) { %>
+            <button type="button" class="actionButton flagButton btn" disabled>Reported</button>
+          <% } else { %>
+            <button type="button" class="actionButton flagButton btn">Report dead link</button>
+          <% } %>
+        <% } else { %>
+          <button type="button" class="actionButton flagLoginButton btn" data-toggle="modal" data-target="#loginModal">Report dead link</button>
+        <% } %>
+        </div>
+      </div>
+      <!-- <div class="arbitrary"></div> -->
+    </div>
+    <!-- </div> -->
+  </div>
+</div>
+<div class="container">
+  <div class="row justify-content-lg-center">
+    <div class="col-lg-12">
+      <% if (currentUser && currentUser.role === 'admin') { %>
+        <div class="adminTool">
+          <a class="adminButton btn btn-outline-warning" href="/links/<%= link.slug %>/edit">Edit Link</a>
+          <form id="delete-form" action="/links/<%= link._id %>?_method=DELETE" method="POST">
+            <button class="adminButton btn btn-outline-danger">Delete Link</button>
+          </form>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</div>
+<% include ../partials/footer %>

@@ -1,0 +1,7 @@
+/.sass-cache
+config/dev.js
+node_modules/
+public/data/links-local.json
+public/data/makers-local.json
+public/data/tags-local.json
+.DS_Store

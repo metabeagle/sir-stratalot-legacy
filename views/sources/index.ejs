@@ -1,0 +1,51 @@
+<% include ../partials/header %>
+<% include ../partials/modules/login-modal %>
+<div class="row">
+  <div class="container">
+    <div class="row justify-content-lg-center">
+      <!-- <div class="col-lg-12"> --> <!-- switch with other depending on columns -->
+      <div class="col-lg-9">
+        <div class="listHeader">
+          <div class="listHeadline">
+            <h1><span>Sources</span><i class="fas fa-star-of-life"></i></h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div id="listjsContainer">
+    <div class="row justify-content-lg-center">
+      <!-- <div class="col-lg-12"> --> <!-- switch with other depending on columns -->
+      <div class="col-lg-9">
+        <div class="listTools">
+          <% include ../partials/modules/sources-list-search %>
+          <% include ../partials/modules/sources-list-sort %>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-lg-center">
+      <!-- <div class="col-lg-3"></div> -->
+      <div class="col-lg-9">
+        <div class="listjs">
+          <!-- Main sources index -->
+          <% include ../partials/modules/sources-list %>
+        </div>
+        <% include ../partials/modules/links-list-noresults %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row justify-content-lg-center">
+    <div class="col-lg-12">
+      <% if(currentUser && currentUser.role === 'admin'){ %>
+        <div class="adminTool">
+          <a class="adminButton btn btn-outline-primary" href="/sources/new">New Source</a>
+        </div>
+      <% } %>
+    </div>
+  </div>  
+</div>
+<% include ../partials/footer %>

@@ -1,0 +1,114 @@
+#bloodhound {
+	text-align: left;
+	.searchIcon {
+		position: relative;
+		top: 2rem;
+		left: 1rem;
+		z-index: 80;
+		i {
+			font-size: 87.5%;
+		}
+	}
+	// correct for icon placement
+	margin-top: -1.5rem;
+	input {
+		border-radius: 0.1875rem;
+	}
+}
+
+input.typeahead {
+	padding-left: 2.5rem;
+	font-size: $font-size-base;
+	letter-spacing: normal;
+	transition: color 0.15s ease-in-out,background-color 0.15s ease-in-out,border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out;
+}
+
+span.twitter-typeahead {
+	width: 100%;
+	.tt-menu {
+		top: 2.375rem !important;
+		margin-top: 0;
+		padding: 0.5rem 0;
+		border-top: none;
+		border-radius: 0.1875rem;
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+		width: 100%;
+		white-space: normal;
+		// z-index: $dropdown-z-index;
+		// max-height: ($spacer * 24);
+		// overflow-y: auto;
+	}
+	.tt-dataset {
+		// padding-bottom: 0.5rem;
+		// padding: 0.5rem 0;
+		// border-top: 1px solid $gray-300;
+	}
+	.tt-suggestion {
+		display: flex;
+		flex-wrap: nowrap;
+		justify-content: space-between;
+		align-items: baseline;
+		padding: 0.25rem 1rem;
+		white-space: normal;
+		letter-spacing: -0.011em;
+		// strong {
+		// 	font-weight: normal;
+		// 	color: #e63946;
+		// }
+		.ttMeta {
+			align-self: center;
+			// flex-basis: 7.5%;
+			margin-left: ($spacer * 0.4);
+			// font-size: $small-font-size;
+			font-size: $font-size-sm;
+			letter-spacing: normal;
+			line-height: 1;
+			strong {
+				font-weight: normal;
+			}
+		}
+		.ttCount {
+			align-self: center;
+			font-variant-numeric: tabular-nums;
+			// font-family: $font-family-monospace;
+		}
+		@include media-breakpoint-down(md){
+			font-size: $font-size-sm;
+			letter-spacing: normal;
+			.ttMeta {
+				font-size: $small-font-size;
+			}
+		}
+	}
+
+	.tt-suggestion.tt-selectable {
+		cursor: pointer;
+		&:last-child {
+			// padding-bottom: 0.75rem;
+		}
+	}
+
+	.ttNoResults {
+		display: flex;
+		flex-wrap: nowrap;
+		justify-content: space-between;
+		align-items: baseline;
+		padding: 0.25rem 1rem;
+		padding-top: 0.75rem;
+		white-space: normal;
+		letter-spacing: -0.011em;
+	}
+
+	.ttHeader {
+		padding-top: 0.75rem;
+		// border-top: 1px solid $gray-300;
+		text-transform: uppercase;
+		letter-spacing: 0.125em;
+		font-size: $small-font-size;
+		font-weight: 500;
+		&:hover {
+			background: none;
+		}
+	}
+}

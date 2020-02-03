@@ -1,0 +1,66 @@
+<% include ../partials/header %>
+<div class="row justify-content-lg-center antiflashBlock">
+  <div class="col-lg-9">
+    <div class="jumbotron formTitle text-center">
+      <h1>Edit Maker</h1>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row justify-content-lg-center">
+    <div class="col-lg-9">
+      <div class="formContainer">
+        <form action="/makers/<%= maker._id %>?_method=PUT" method="POST">
+          <% if(maker.kind === 'Person'){ %>
+            <input type="hidden" name="maker[kind]" value="Person">
+            <div class="form-group form-row">
+              <div class="col">
+                <input class="form-control" type="text" name="maker[first]" placeholder="First name" value="<%= maker.first %>" >
+              </div>
+              <div class="col">
+                <input class="form-control" type="text" name="maker[last]" placeholder="Last name" value="<%= maker.last %>">
+              </div>
+            </div>
+          <% } else { %>
+            <input type="hidden" name="maker[kind]" value="Organization">
+            <div class="form-group form-row">
+              <div class="col">
+                <input class="form-control" type="text" name="maker[name]" placeholder="Organization name" value="<%= maker.name %>">
+              </div>
+            </div>
+          <% } %>
+          <div class="form-group">
+            <input class="form-control" type="text" name="maker[slug]" placeholder="Slug" value="<%= maker.slug %>">
+          </div>
+          <div id="makerChannels">
+            <% maker.channels.forEach((channel, index) => { %>
+              <div class="makerChannelRow form-group form-row">
+                <div class="col">
+                  <input class="form-control" type="text" name="maker[channels][<%= index %>][kind]" placeholder="Channel" value="<%= channel.kind %>">
+                </div>
+                <div class="col">
+                  <input class="form-control" type="text" name="maker[channels][<%= index %>][name]" placeholder="Name" value="<%= channel.name %>">
+                </div>
+                <div class="col">
+                  <input class="form-control" type="text" name="maker[channels][<%= index %>][url]" placeholder="URL" value="<%= channel.url %>">
+                </div>
+                <div class="col-md-1">
+                  <button class="removeChannel btn btn-outline-danger btn-block" type="button"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+            <% }); %>
+          </div>
+          <div class="form-group form-row">
+            <div class="col-1">
+              <button id="addChannel" type="button" class="btn btn-outline-success btn-block"><i class="fas fa-plus"></i></button>
+            </div>
+            <div class="col">
+              <button type="submit" class="btn btn-primary btn-block">Update</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<% include ../partials/footer %>
